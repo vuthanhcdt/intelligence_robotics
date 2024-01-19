@@ -99,7 +99,8 @@ ros2 launch scout_base scout_mini_omni_base.launch.py
 ## Project material
 Please refer to the README files for each package in the ``project``directory.
 1. [Object recognition using Deep Learning with YOLOv8](project/train_model_yolov8).
-2. 
+2. [Fundamentals of Mobile Robot Navigation, Path Planning, and Obstacle Avoidance](project/autonoumous_navigation).
+3. [Using Deep Learning with YOLOv8 for Object Detection and Object Following](project/object_tracking).
 
 
 
