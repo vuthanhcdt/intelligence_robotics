@@ -1,25 +1,41 @@
-# Genbot - Generative AI Robot for [Networked robotic systems laboratory](https://sites.google.com/site/yenchenliuncku)
-These packages made by [Thanh](https://sites.google.com/view/vuthanhcdt/home) and Hsin-Hui from [Networked robotic systems laboratory](https://sites.google.com/site/yenchenliuncku). If you use any packages from this repository, please cite this repository and our name.
+# IRobot - Intelligence Robotics Course
+
+Welcome to the iRobot Intelligence Robotics Course offered by the [Networked Robotic Systems Laboratory (NRSL)](https://sites.google.com/site/yenchenliuncku). This repository contains essential packages developed by [NRSL](https://sites.google.com/site/yenchenliuncku) to support various aspects of the course. If you choose to utilize any packages from this repository, we kindly request you to cite this repository and acknowledge [NRSL](https://sites.google.com/site/yenchenliuncku) in your work.
+
 
 ## Overview
 The project is constructed using Agilex's Scout Mini Omni platform, which are outlined as follows:
 ```
-genbot/
-├── genbot                          // Original packages
-│   ├── scout_ros2                  // Original packages for Genbot
-|   |   ├──scout_base               // Base for Genbot
-|   |   ├──scout_msgs               // Messages for Genbot
-|   |   ├──scout_simulation         // Simulation for Genbot
+irobot/
+├── irobot                          // Original packages
+│   ├── scout_ros2                  // Original packages for Irobot
+|   |   ├──scout_base               // Base for Irobot
+|   |   ├──scout_msgs               // Messages for Irobot
+|   |   ├──scout_simulation         // Simulation for Irobot
 |   |   ├──velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
-|   ├── uwb                         // UWB DWM1001 for Genbot
-│   ├── ugv_sdk                     // Protocol to transmit data with Genbot
-├── thanh_pks                       // Some packages made by Thanh
-├── hsin_hui_pkgs                   // Some packages made by Hsin-Hui
+│   |   ├──ugv_sdk                  // Protocol to transmit data with 
+|   ├── project                     // Project packages for Irobot
+|   |   ├──train_model_yolov8       // Package for training YOLOv8 model
+|   |   ├──autonoumous_navigation   // Package for autonomous navigation
+|   |   ├──object_tracking          // Package for object tracking
+Irobot
+├── student_pks                     // PStudent packages - Place your packages here with your name to test your programs.
 └── README.md
 ```
+Please ensure that your packages are named in lowercase and do not contain any special characters. Place them in the ``student_pkgs`` directory.
+## Course Resources
+Here are some useful links for the course:
+- [W3Schools - Python Tutorial](https://www.w3schools.com/python/): Comprehensive Python tutorials covering basics to advanced concepts.
+- [ROS 2 Documentation](https://docs.ros.org/en/humble/index.html): Official documentation for ROS 2, offering guides and essential resources for learners.
+- [Understanding ROS 2 topics](https://docs.ros.org/en/crystal/Tutorials/Topics/Understanding-ROS2-Topics.html): Explore the fundamentals of ROS 2 topics.
+- [ROS 2 Publishers and Subscribers Tutorial](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html): Learn about Publishers and Subscribers in ROS 2 through this tutorial.
+- [Yolov8](https://docs.ultralytics.com/usage/python/#train): Explore Yolov8 training documentation for detailed information.
+
+Ensure to explore these links for detailed and helpful resources throughout your learning and program development. Happy coding!
+
 
 ## Install Dependent ROS Packages
-The project has undergone extensive testing on Ubuntu 22.04 (ROS Humble), making it strongly advisable to utilize Ubuntu 22.04 for optimal compatibility. To begin, open your terminal and execute the following commands:
+The source code is designed to be used on Ubuntu 22.04 (ROS Humble), making it highly recommended to utilize Ubuntu 22.04 for optimal compatibility. To get started, open your terminal and execute the following commands to install the dependent packages for ROS2:
 ```
 sudo apt-get install ros-humble-joy ros-humble-teleop-twist-joy \
   ros-humble-teleop-twist-keyboard ros-humble-laser-proc \
@@ -53,64 +69,40 @@ sudo apt-get install ros-humble-joy ros-humble-teleop-twist-joy \
   ros-humble-geometry2\
   xterm
 ```
-
-## Creating a new package
-If you wish to contribute to this project by creating a new package, please refrain from making any alterations to the existing repository. Instead, kindly establish a new folder under your name and develop your package within this designated folder. After creating your package, ensure you update the project overview and [README](README.md) file accordingly.
-
-## ROS for Genbot
-These commands enable the utilization of each function developed in Genbot with ``ROS_ID=150``.
-### Install Genbot Packages
+## Install Irobot Workspace
 Open the new terminal and do these commands:
 ```
-mkdir -p ~/genbot_ws/src
-cd ~/genbot_ws/src/
-git clone https://github.com/vuthanhcdt/genbot.git
-cd ~/genbot_ws
+mkdir -p ~/irobot_ws/src
+cd ~/irobot_ws/src/
+https://github.com/vuthanhcdt/intelligence_robotics.git
+cd ~/irobot_ws
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install --cmake-args=-DCMAKE_BUILD_TYPE=Release --parallel-workers $(nproc)
-echo "source ~/genbot_ws/install/setup.bash" >> ~/.bashrc
-echo "export ROS_DOMAIN_ID=150" >> ~/.bashrc
+echo "source ~/irobot_ws/install/setup.bash" >> ~/.bashrc
 ```
-### Bringup with Genbot
+Commands for iRobot Usage
 
+- Launch the simulation in a warehouse environment with Gazebo.
 ```
-ros2 launch scout_base scout_mini_omni_base.launch.py
+ros2 launch scout_simulation simulation.launch.py
 ```
-###  Control the robot with a keyboard teleoperation node
+- Run the keyboard teleoperation node to control the robot using the keyboard.
 
 ```
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
-### UWB
-```
-ros2 launch uwb uwb.launch.py 
-```
-Install pykalman to use Kalman filter for the position
-```
-pip3 install pyserial
-pip3 install pykalman
-```
-### Gazebo with Agribot
-Warehouse environment without the human:
-```
-ros2 launch scout_simulation simulation.launch.py 
-```
-Empty environment with the human:
-```
-ros2 launch scout_simulation simulation_empty_actor.launch.py 
-```
-To create a new environment, place it in the ``scout_simulation/worlds`` directory. If you desire to run simulations at a faster rate than real-time, you can modify the ``real_time_factor`` and ``real_time_update_rate`` parameters in the world file accordingly.
 
-> **Note**  
-> If you switch to a new operating system, ensure that all settings are properly installed for Genbot, please follow the [installation tutorials](https://github.com/vuthanhcdt/genbot/blob/humble/initial_setup.md) for each device.
+- Launch the iRobot base to bring up the robot.
+
+```
+ros2 launch scout_base scout_mini_omni_base.launch.py
+```
+## Project material
+Please refer to the README files for each package in the ``project``directory.
+1. [Object recognition using Deep Learning with YOLOv8](project/train_model_yolov8/README.md).
+2. 
 
 
-## TODO
-- [ ] ...
-- [ ] ...
-- [ ] ...
-- [ ] ...
-- [ ] ...
 
 ## References
 1. https://sites.google.com/site/yenchenliuncku
