@@ -1,26 +1,38 @@
-# YOLOv8 Model Training Package
-This package provides essential commands for training a YOLOv8 model to recognize objects.
-## Preparing a custom dataset for YOLOv8
-- Generate datasets with [Roboflow](https://app.roboflow.com/) and download this to ``data``
-- Trainning
-### YOLOv8 Instance Segmentation
-To perform instance segmentation with YOLOv8, execute the following commands:
-```
-python3 train_seg.py 
-```
-Validate the data using the image named "test_predict.jpg":
-```
-python3 predict_seg.py
-```
-After that, go to ``runs/segment/predict`` to check the model
+# Fundamentals of Mobile Robot Navigation, Path Planning, and Obstacle Avoidance
+This package includes essential commands for understanding the fundamentals of mobile robot navigation, path planning, and obstacle avoidance.
 
-### YOLOv8 Object detection
-For YOLOv8 object detection, use the following commands:
+If you want to try in the simulator, make sure Gazebo is enabled by running the following command:
 ```
-python3 train.py 
+ros2 launch scout_simulation simulation.launch.py
 ```
-Validate the data using the image named "test_predict.jpg":
+
+
+## 1. Localization
+In this project, the [SLAM toolbox](https://github.com/SteveMacenski/slam_toolbox) is utilized as a localization tool for the robot through the SLAM algorithm, encompassing mapping and localization steps.
+### 1.1 Mapping
+Mapping involves creating a representation of the environment using sensor data. You can use a SLAM algorithm for this purpose. Here's a generic guide for mapping:
 ```
-python3 predict.py
+ros2 launch autonoumous_navigation slam.launch.py 
 ```
-After that, go to ``runs/detec/predict`` to check the model
+Use the ``teleop_twist_keyboard package`` for teleoperation in a simulated environment.
+```
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+In the real world, please use Remote control to move the robot.
+### 1.2 Save the map
+Execute the following command to save the map, Please note that this command will generate two files, namely map.pgm and map.yaml, in the specified directory (in this case, ~/map). Afterward, you can copy these two files to the ``maps`` directory of the ``autonomous_navigation`` package.
+```
+ros2 run nav2_map_server map_saver_cli -f ~/map
+```
+Or click directly in slam_toolbox to save the map.
+
+
+## 2. Navigation
+After obtaining the map, use the following command for navigation. Please note that you need to select the initial starting point for the robot before using it:
+
+```
+ros2 launch autonoumous_navigation navigation.launch.py 
+```
+After the Rviz frame appears, you can observe the local and global planning, as well as the obstacles that appear in the environment.
+## 3. Assignment
+Develop a ROS2 control program to generate waypoints for the robot to pass through by creating a program that publishes to the ``goal_pose`` topic with the message type ``PoseStamped``. Additionally, utilize the robot's current position to validate the waypoints.

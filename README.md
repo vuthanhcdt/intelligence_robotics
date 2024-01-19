@@ -14,6 +14,7 @@ irobot/
 |   |   ├──scout_simulation         // Simulation for Irobot
 |   |   ├──velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
 │   |   ├──ugv_sdk                  // Protocol to transmit data with Irobot 
+|   ├── pointcloud_to_laserscan     // Convert poincloud to laserscan
 |   ├── project                     // Project packages for Irobot
 |   |   ├──train_model_yolov8       // Package for training YOLOv8 model
 |   |   ├──autonoumous_navigation   // Package for autonomous navigation
@@ -66,6 +67,7 @@ sudo apt-get install ros-humble-joy ros-humble-teleop-twist-joy \
   ros-humble-gazebo-ros-pkgs\
   ros-humble-ros-core\
   ros-humble-geometry2\
+  ros-humble-tf2-sensor-msgs\
   xterm
 ```
 ## Install Irobot Workspace

@@ -70,4 +70,4 @@ def generate_launch_description():
         arguments=[["-d"], [config_rviz]],
     )
 
-    return LaunchDescription([spawn_entity, start_robot_state_publisher_cmd, gazebo,rviz_node])
+    return LaunchDescription([spawn_entity, start_robot_state_publisher_cmd, gazebo])
