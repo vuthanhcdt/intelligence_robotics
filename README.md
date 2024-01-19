@@ -13,12 +13,11 @@ irobot/
 |   |   ├──scout_msgs               // Messages for Irobot
 |   |   ├──scout_simulation         // Simulation for Irobot
 |   |   ├──velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
-│   |   ├──ugv_sdk                  // Protocol to transmit data with 
+│   |   ├──ugv_sdk                  // Protocol to transmit data with Irobot 
 |   ├── project                     // Project packages for Irobot
 |   |   ├──train_model_yolov8       // Package for training YOLOv8 model
 |   |   ├──autonoumous_navigation   // Package for autonomous navigation
 |   |   ├──object_tracking          // Package for object tracking
-Irobot
 ├── student_pks                     // PStudent packages - Place your packages here with your name to test your programs.
 └── README.md
 ```
