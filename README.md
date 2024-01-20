@@ -14,6 +14,7 @@ irobot/
 |   |   ├──scout_simulation         // Simulation for Irobot
 |   |   ├──velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
 │   |   ├──ugv_sdk                  // Protocol to transmit data with Irobot 
+│   |   ├──zed-ros2-wrapper         // Communication with ZED X 
 |   ├── pointcloud_to_laserscan     // Convert poincloud to laserscan
 |   ├── project                     // Project packages for Irobot
 |   |   ├──train_model_yolov8       // Package for training YOLOv8 model
@@ -102,7 +103,7 @@ ros2 launch scout_base scout_mini_omni_base.launch.py
 Please refer to the README files for each package in the ``project``directory.
 1. [Object recognition using Deep Learning with YOLOv8](project/train_model_yolov8).
 2. [Fundamentals of Mobile Robot Navigation, Path Planning, and Obstacle Avoidance](project/autonoumous_navigation).
-3. [Using Deep Learning with YOLOv8 for Object Detection and Object Following](project/object_tracking).
+3. [Deep Learning for Object Detection and Object Following](project/object_tracking).
 
 
 

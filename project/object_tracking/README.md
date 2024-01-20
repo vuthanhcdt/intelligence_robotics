@@ -1,26 +1,8 @@
-# YOLOv8 Model Training Package
-This package provides essential commands for training a YOLOv8 model to recognize objects.
-## Preparing a custom dataset for YOLOv8
-- Generate datasets with [Roboflow](https://app.roboflow.com/) and download this to ``data``
-- Trainning
-### YOLOv8 Instance Segmentation
-To perform instance segmentation with YOLOv8, execute the following commands:
-```
-python3 train_seg.py 
-```
-Validate the data using the image named "test_predict.jpg":
-```
-python3 predict_seg.py
-```
-After that, go to ``runs/segment/predict`` to check the model
+# Deep Learning for Object Detection and Object Following
+This package includes essential commands to understand the basic principles of applying deep learning to object detection and tracking by using Yolov8.
 
-### YOLOv8 Object detection
-For YOLOv8 object detection, use the following commands:
+If you want to try in the simulator, make sure Gazebo is enabled by running the following command:
 ```
-python3 train.py 
+ros2 launch scout_simulation object_detection.launch.py
 ```
-Validate the data using the image named "test_predict.jpg":
-```
-python3 predict.py
-```
-After that, go to ``runs/detec/predict`` to check the model
+
