@@ -99,7 +99,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 ros2 launch scout_base scout_mini_omni_base.launch.py
 ```
-## Project material
+## Project Material
 Please refer to the README files for each package in the ``project``directory.
 1. [Object recognition using Deep Learning with YOLOv8](project/train_model_yolov8).
 2. [Fundamentals of Mobile Robot Navigation, Path Planning, and Obstacle Avoidance](project/autonoumous_navigation).
