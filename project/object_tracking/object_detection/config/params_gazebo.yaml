@@ -1,0 +1,20 @@
+object_detection:
+  ros__parameters:
+    topic_camera: '/camera_left/image_raw'
+    cam_name: 'left'
+    model_yolo: 'yolov8n.pt'
+    model_yolo_custom: 'gazebo_detect_011123.pt'
+    topic_object: 'object_detection'
+
+real_objection:
+  ros__parameters:
+    cam_name: 'left'
+    topic_object: 'object_detection'
+    topic_camera_depth: '/camera_left/depth/image_raw'
+    topic_camera_info: '/camera_left/depth/camera_info'
+    base_frame: 'camera_left_link'
+    topic_tree: 'left_tree'
+    permit_distance: 10.0
+    limit_x: 260.0
+    limit_y: 300.0
+
