@@ -1,6 +1,6 @@
 # IRobot - Intelligence Robotics Course
 
-Welcome to the iRobot Intelligence Robotics Course offered by the [Networked Robotic Systems Laboratory (NRSL)](https://sites.google.com/site/yenchenliuncku). This repository contains essential packages developed by [NRSL](https://sites.google.com/site/yenchenliuncku) to support various aspects of the course. If you choose to utilize any packages from this repository, we kindly request you to cite this repository and acknowledge [NRSL](https://sites.google.com/site/yenchenliuncku) in your work.
+Welcome to Intelligence Robotics Course offered by the [Networked Robotic Systems Laboratory (NRSL)](https://sites.google.com/site/yenchenliuncku). This repository contains essential packages developed by [NRSL](https://sites.google.com/site/yenchenliuncku) to support various aspects of the course. If you choose to utilize any packages from this repository, we kindly request you to cite this repository and acknowledge [NRSL](https://sites.google.com/site/yenchenliuncku) in your work.
 
 
 ## Overview
