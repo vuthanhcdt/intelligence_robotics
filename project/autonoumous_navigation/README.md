@@ -3,6 +3,7 @@ This package includes essential commands for understanding the fundamentals of m
 
 If you want to try in the simulator, make sure Gazebo is enabled by running the following command:
 ```
+ros2 launch scout_base scout_mini_omni_base.launch.py
 ros2 launch scout_simulation simulation.launch.py
 ```
 
