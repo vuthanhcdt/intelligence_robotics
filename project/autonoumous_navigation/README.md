@@ -17,7 +17,8 @@ ros2 launch velodyne velodyne-all-nodes-VLP16-composed-launch.py
 ```
 Mapping involves creating a representation of the environment using sensor data. You can use a SLAM algorithm for this purpose. Here's a generic guide for mapping:
 ```
-ros2 launch autonoumous_navigation slam.launch.py 
+ros2 launch autonoumous_navigation slam.launch.py #real
+ros2 launch autonoumous_navigation slam_gazebo.launch.py #gazebo
 ```
 Use the ``teleop_twist_keyboard package`` for teleoperation in a simulated environment.
 ```

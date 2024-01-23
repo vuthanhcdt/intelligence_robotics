@@ -15,7 +15,7 @@ def generate_launch_description():
     rviz_config_dir = os.path.join(
         get_package_share_directory('autonoumous_navigation'),
         'rviz',
-        'slam.rviz')
+        'navigation2.rviz')
         
     pointcloud_laser=IncludeLaunchDescription(
         launch_description_source=PythonLaunchDescriptionSource([
@@ -27,20 +27,23 @@ def generate_launch_description():
     slam=IncludeLaunchDescription(
         launch_description_source=PythonLaunchDescriptionSource([
             get_package_share_directory('autonoumous_navigation'),
-            '/launch/online_async_launch_real.py'
+            '/launch/online_async_launch.py'
         ])
-    )
-    
-    rviz2_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='slam',
-        output='screen',
-        arguments=[["-d"], [rviz_config_dir]],
     )
 
     return LaunchDescription([
+    	pointcloud_laser,
     	slam,
-    	rviz2_node
-       
+    	DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock if true'),
+
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            arguments=['-d', rviz_config_dir],
+            parameters=[{'use_sim_time': use_sim_time}],
+            output='screen'),
     ])
