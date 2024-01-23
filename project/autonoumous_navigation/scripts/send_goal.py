@@ -4,8 +4,9 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import PoseStamped
 from tf2_ros import TransformListener, Buffer
-import tf2_geometry_msgs  # Import để sử dụng hàm do_transform_pose
+import tf2_geometry_msgs  # Import to use the do_transform_pose function
 import time
+import math 
 
 class GoalPosePublisher(Node):
     def __init__(self):
@@ -13,20 +14,21 @@ class GoalPosePublisher(Node):
         self.publisher_ = self.create_publisher(PoseStamped, 'goal_pose', 10)
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
-        self.timer_ = self.create_timer(1.0, self.publish_goal_pose)
+        self.timer_ = self.create_timer(0.01, self.publish_goal_pose)
         self.goal_poses = self.generate_goal_poses()
         self.current_goal_index = 0
 
     def generate_goal_poses(self):
-        # Tạo danh sách chứa 4 điểm goal đặt trước
+        # Create a list containing 4 pre-defined goal poses
         goal_poses = []
-        goal_poses.append(self.create_pose_stamped(1.0, 0.0, 0.0, 0.0, 0.0, 0.0))
-        goal_poses.append(self.create_pose_stamped(0.0, 1.0, 0.0, 0.0, 0.0, 1.57))
-        goal_poses.append(self.create_pose_stamped(-1.0, 0.0, 0.0, 0.0, 0.0, 3.14))
-        goal_poses.append(self.create_pose_stamped(0.0, -1.0, 0.0, 0.0, 0.0, -1.57))
+        goal_poses.append(self.create_pose_stamped(2.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+        goal_poses.append(self.create_pose_stamped(0.0, 2.0, 0.0, 0.0, 0.0, 1.57))
+        goal_poses.append(self.create_pose_stamped(-2.0, 0.0, 0.0, 0.0, 0.0, 3.14))
+        goal_poses.append(self.create_pose_stamped(0.0, -2.0, 0.0, 0.0, 0.0, -1.57))
         return goal_poses
 
     def create_pose_stamped(self, x, y, z, qx, qy, qz):
+        # Helper function to create a PoseStamped message
         pose_stamped = PoseStamped()
         pose_stamped.pose.position.x = x
         pose_stamped.pose.position.y = y
@@ -40,27 +42,26 @@ class GoalPosePublisher(Node):
 
     def publish_goal_pose(self):
         try:
-            # Lấy thông tin biến đổi giữa "map" và "base_link"
+            # Get the transform information between "map" and "base_link"
             transform_stamped = self.tf_buffer.lookup_transform(
-                'map', 'base_link', rclpy.time.Time(), timeout=rclpy.duration.Duration(seconds=1.0)
+                'map', 'base_link', rclpy.time.Time()
             )
-
-            # Lấy goal hiện tại và chuyển đổi nó từ "map" sang "base_link"
+            print(transform_stamped)
+            # Get the current goal and transform it from "map" to "base_link"
             current_goal = self.goal_poses[self.current_goal_index]
-            transformed_goal = tf2_geometry_msgs.do_transform_pose(current_goal, transform_stamped)
-
-            # Xuất bản goal đã được chuyển đổi
-            self.publisher_.publish(transformed_goal)
-            self.get_logger().info(f'Publishing goal pose: {transformed_goal}')
-
-            # Kiểm tra xem robot đã đến gần đúng goal hay chưa
-            distance_to_goal = transformed_goal.pose.position.x**2 + transformed_goal.pose.position.y**2
-            if distance_to_goal < 0.1:  # Điều chỉnh giá trị ngưỡng tùy thuộc vào yêu cầu của bạn
+            # Publish the transformed goal
+            self.publisher_.publish(current_goal)
+            #Check if the robot has reached the current goal
+            deltax = transform_stamped.transform.translation.x - current_goal.pose.position.x
+            deltay = transform_stamped.transform.translation.y - current_goal.pose.position.y
+            distance_to_goal = math.sqrt(deltax**2 + deltay**2)
+            print(distance_to_goal)
+            if distance_to_goal < 0.3:  # Adjust the threshold value as needed
                 self.get_logger().info(f'Reached goal {self.current_goal_index + 1}, moving to the next goal...')
                 self.current_goal_index = (self.current_goal_index + 1) % len(self.goal_poses)
 
         except Exception as e:
-            self.get_logger().warn(f'Error looking up transform: {str(e)}')
+           pass
 
 def main(args=None):
     rclpy.init(args=args)
@@ -77,4 +78,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
