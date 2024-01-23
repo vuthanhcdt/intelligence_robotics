@@ -1,1 +1,0 @@
-# The directory for download datasets from [Roboflow](https://app.roboflow.com/)

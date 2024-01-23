@@ -67,6 +67,7 @@ sudo apt-get install ros-humble-joy ros-humble-teleop-twist-joy \
   ros-humble-pcl-ros\
   ros-humble-sensor-msgs-py\
   ros-humble-tf2-tools\
+  ros-humble-robot-state-publisher\
   gazebo\
   ros-humble-gazebo-ros-pkgs\
   ros-humble-ros-core\

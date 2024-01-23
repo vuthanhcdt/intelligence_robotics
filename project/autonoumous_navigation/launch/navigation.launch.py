@@ -16,7 +16,7 @@ def generate_launch_description():
         default=os.path.join(
             get_package_share_directory('autonoumous_navigation'),
             'maps',
-            'map.yaml'))
+            'simulation_map.yaml'))
 
     param_file_name = 'nrsl.yaml'
     param_dir = LaunchConfiguration(

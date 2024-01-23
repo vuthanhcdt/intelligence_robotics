@@ -34,7 +34,7 @@ Or click directly in slam_toolbox to save the map.
 
 
 ## 2. Navigation
-After obtaining the map, use the following command for navigation. Please note that you need to select the initial starting point for the robot before using it:
+Before starting navigation, ensure the correct map name is specified in the launch file, obtain the map, and then use the provided command; remember to select the initial starting point for the robot.
 
 ```
 ros2 launch autonoumous_navigation navigation.launch.py 
