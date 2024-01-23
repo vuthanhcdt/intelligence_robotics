@@ -1,4 +1,4 @@
-image: map.pgm
+image: simulation_map.pgm
 resolution: 0.050000
 origin: [-15.092546, -35.003552, 0.000000]
 negate: 0
