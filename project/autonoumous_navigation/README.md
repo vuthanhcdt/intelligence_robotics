@@ -3,7 +3,6 @@ This package includes essential commands for understanding the fundamentals of m
 
 If you want to try in the simulator, make sure Gazebo is enabled by running the following command:
 ```
-ros2 launch scout_base scout_mini_omni_base.launch.py
 ros2 launch scout_simulation simulation.launch.py
 ```
 
@@ -13,6 +12,7 @@ In this project, the [SLAM toolbox](https://github.com/SteveMacenski/slam_toolbo
 ### 1.1 Mapping
 If you are using the real robot, please run the command:
 ```
+ros2 launch scout_base scout_mini_omni_base.launch.py
 ros2 launch velodyne velodyne-all-nodes-VLP16-composed-launch.py
 ```
 Mapping involves creating a representation of the environment using sensor data. You can use a SLAM algorithm for this purpose. Here's a generic guide for mapping:
