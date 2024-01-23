@@ -73,6 +73,7 @@ sudo apt-get install ros-humble-joy ros-humble-teleop-twist-joy \
   ros-humble-ros-core\
   ros-humble-geometry2\
   ros-humble-tf2-sensor-msgs\
+  libompl-dev\
   xterm
 ```
 ## Install Irobot Workspace
