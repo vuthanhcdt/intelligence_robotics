@@ -76,11 +76,12 @@ Open the new terminal and do these commands:
 ```
 mkdir -p ~/irobot_ws/src
 cd ~/irobot_ws/src/
-https://github.com/vuthanhcdt/intelligence_robotics.git
+git clone https://github.com/vuthanhcdt/intelligence_robotics.git
 cd ~/irobot_ws
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install --cmake-args=-DCMAKE_BUILD_TYPE=Release --parallel-workers $(nproc)
 echo "source ~/irobot_ws/install/setup.bash" >> ~/.bashrc
+echo "export ROS_DOMAIN_ID=170" >> ~/.bashrc
 ```
 Commands for iRobot Usage
 
