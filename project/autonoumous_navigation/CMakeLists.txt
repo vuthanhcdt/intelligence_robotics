@@ -41,11 +41,6 @@ endif()
 ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
-install(PROGRAMS
-  launch/navigation.launch.py
-  DESTINATION lib/${PROJECT_NAME}
-)
-
 install(DIRECTORY launch
   DESTINATION share/${PROJECT_NAME})
 
