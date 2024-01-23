@@ -17,8 +17,8 @@ ros2 launch velodyne velodyne-all-nodes-VLP16-composed-launch.py
 ```
 Mapping involves creating a representation of the environment using sensor data. You can use a SLAM algorithm for this purpose. Here's a generic guide for mapping:
 ```
-ros2 launch autonoumous_navigation slam.launch.py #real
-ros2 launch autonoumous_navigation slam_gazebo.launch.py #gazebo
+ros2 launch autonoumous_navigation slam_real.launch.py
+ros2 launch autonoumous_navigation slam_gazebo.launch.py
 ```
 Use the ``teleop_twist_keyboard package`` for teleoperation in a simulated environment.
 ```
@@ -37,8 +37,8 @@ Or click directly in slam_toolbox to save the map.
 Before starting navigation, ensure the correct map name is specified in the launch file, obtain the map, and then use the provided command; remember to select the initial starting point for the robot.
 
 ```
-ros2 launch autonoumous_navigation navigation_real.launch.py #real
-ros2 launch autonoumous_navigation navigation.launch.py #gazebo
+ros2 launch autonoumous_navigation navigation_real.launch.py 
+ros2 launch autonoumous_navigation navigation_gazebo.launch.py
 ```
 After the Rviz frame appears, you can observe the local and global planning, as well as the obstacles that appear in the environment.
 ## 3. Assignment
