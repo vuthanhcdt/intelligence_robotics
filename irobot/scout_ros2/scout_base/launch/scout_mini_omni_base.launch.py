@@ -32,6 +32,12 @@ def generate_launch_description():
     sim_control_rate_arg = DeclareLaunchArgument('control_rate', default_value='50',
                                                  description='Simulation control loop update rate')
     
+    static_tf2_base_scan= Node(package="tf2_ros",
+            executable="static_transform_publisher",
+            output="screen" ,
+            arguments=["0.175", "0.0", "0.0", "0.0", "0.0", "0", "base_link", "base_scan"]
+        )
+    
     scout_base_node = launch_ros.actions.Node(
         package='scout_base',
         executable='scout_base_node',
@@ -60,5 +66,6 @@ def generate_launch_description():
         is_omni_wheel_arg,
         simulated_robot_arg,
         sim_control_rate_arg,
-        scout_base_node
+        scout_base_node,
+        static_tf2_base_scan
     ])

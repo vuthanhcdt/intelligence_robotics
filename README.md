@@ -13,8 +13,8 @@ irobot/
 |   |   ├──scout_msgs               // Messages for Irobot
 |   |   ├──scout_simulation         // Simulation for Irobot
 |   |   ├──velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
-│   |   ├──ugv_sdk                  // Protocol to transmit data with Irobot 
 │   |   ├──zed-ros2-wrapper         // Communication with ZED X
+│   ├──ugv_sdk                      // Protocol to transmit data with Irobot 
 |   ├── perception_pcl              // point cloud for Velodyne
 |   ├── pcl_msgs                    // point cloud for Velodyne
 |   ├── velodyne                    // point cloud for Velodyne
