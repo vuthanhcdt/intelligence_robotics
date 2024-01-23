@@ -37,7 +37,8 @@ Or click directly in slam_toolbox to save the map.
 Before starting navigation, ensure the correct map name is specified in the launch file, obtain the map, and then use the provided command; remember to select the initial starting point for the robot.
 
 ```
-ros2 launch autonoumous_navigation navigation.launch.py 
+ros2 launch autonoumous_navigation navigation_real.launch.py #real
+ros2 launch autonoumous_navigation navigation.launch.py #gazebo
 ```
 After the Rviz frame appears, you can observe the local and global planning, as well as the obstacles that appear in the environment.
 ## 3. Assignment
