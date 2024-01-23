@@ -14,7 +14,10 @@ irobot/
 |   |   ├──scout_simulation         // Simulation for Irobot
 |   |   ├──velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
 │   |   ├──ugv_sdk                  // Protocol to transmit data with Irobot 
-│   |   ├──zed-ros2-wrapper         // Communication with ZED X 
+│   |   ├──zed-ros2-wrapper         // Communication with ZED X
+|   ├── perception_pcl              // point cloud for Velodyne
+|   ├── pcl_msgs                    // point cloud for Velodyne
+|   ├── velodyne                    // point cloud for Velodyne
 |   ├── pointcloud_to_laserscan     // Convert poincloud to laserscan
 |   ├── project                     // Project packages for Irobot
 |   |   ├──train_model_yolov8       // Package for training YOLOv8 model
