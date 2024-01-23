@@ -10,6 +10,10 @@ ros2 launch scout_simulation simulation.launch.py
 ## 1. Localization
 In this project, the [SLAM toolbox](https://github.com/SteveMacenski/slam_toolbox) is utilized as a localization tool for the robot through the SLAM algorithm, encompassing mapping and localization steps.
 ### 1.1 Mapping
+If you are using the real robot, please run the command:
+```
+ros2 launch velodyne velodyne-all-nodes-VLP16-composed-launch.py
+```
 Mapping involves creating a representation of the environment using sensor data. You can use a SLAM algorithm for this purpose. Here's a generic guide for mapping:
 ```
 ros2 launch autonoumous_navigation slam.launch.py 
