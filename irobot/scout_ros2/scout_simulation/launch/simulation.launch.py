@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 
 MY_ROBOT = os.environ.get('ROBOT', "scout_mini")
-MY_ENVIRONMENT = os.environ.get('ENV', "warehouse_env_walk_actor")
+MY_ENVIRONMENT = os.environ.get('ENV', "warehouse_env_walk_actor2")
 
 def generate_launch_description():
     default_world_path = os.path.join(get_package_share_directory('scout_simulation'), 'worlds', MY_ENVIRONMENT + '.world')
@@ -34,7 +34,7 @@ def generate_launch_description():
     spawn_entity = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        arguments=['-entity', MY_ROBOT, '-file', urdf,"-x", "0.0", "-y", "0.0", "-z", "0.0","-R","0.0","-P","0.0","-Y","0.0"],
+        arguments=['-entity', MY_ROBOT, '-file', urdf,"-x", "0.0", "-y", "0.0", "-z", "0.0","-R","0.0","-P","0.0","-Y","1.57"],
         output='screen',
         )
 

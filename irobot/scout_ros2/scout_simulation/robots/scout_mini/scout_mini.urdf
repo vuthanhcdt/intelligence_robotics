@@ -370,8 +370,75 @@
           <max_range>130.0</max_range>
           <gaussianNoise>0.008</gaussianNoise>
         </plugin>
-        <pose>0.125 0 0.2877 0 -0 0</pose>
+        <pose>0.2 0 0.2877 0 -0 0</pose>
       </sensor>
     </gazebo>
+    
+<!-- camera -->
+
+  <link name="camera_link">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="1.570796 0 1.570796" xyz="0 -0.0175 0"/>
+      <geometry>
+        <mesh filename="package://scout_simulation/robots/scout_mini/meshes/d435.dae"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+    <inertial>
+      <mass value="1e-5"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+  </link>
+  
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="0 0 0"/>
+    <origin xyz="0.2 0.0 0.15" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+  </joint>
+  
+  <link name="camera_link_optical"/>
+  <joint name="camera_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="camera_link"/>
+    <child link="camera_link_optical"/>
+  </joint>
+
+  <gazebo reference="camera_link">
+    <sensor type="depth" name="camera_link">
+      <always_on>1</always_on>
+      <update_rate>15</update_rate>
+      <camera name="camera">
+        <horizontal_fov>1.5184351666666667</horizontal_fov>
+        <vertical_fov>1.0122901111111111</vertical_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>50.0</far>
+        </clip>
+      </camera>
+      <plugin name="camera" filename="libgazebo_ros_camera.so">
+        <camera_name>camera</camera_name>
+        <frame_name>camera_link_optical</frame_name>
+        <hack_baseline>0.07</hack_baseline>
+        <min_depth>0.2</min_depth>
+        <max_depth>10.0</max_depth>
+      </plugin>
+    </sensor>
+  </gazebo>
+
   
 </robot>
