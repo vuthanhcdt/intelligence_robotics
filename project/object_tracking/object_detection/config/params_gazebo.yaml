@@ -1,19 +1,19 @@
 object_detection:
   ros__parameters:
     topic_camera: '/camera/image_raw'
-    cam_name: 'left'
+    cam_name: 'camera'
     model_yolo: 'yolov8n.pt'
     model_yolo_custom: 'yolov8n.pt'
     topic_object: 'object_detection'
 
 real_objection:
   ros__parameters:
-    cam_name: 'left'
+    cam_name: 'camera'
     topic_object: 'object_detection'
     topic_camera_depth: '/camera/depth/image_raw'
     topic_camera_info: '/camera/depth/camera_info'
     base_frame: 'camera_link'
-    topic_tree: 'left_tree'
+    topic_person: 'person'
     permit_distance: 10.0
     limit_x: 260.0
     limit_y: 300.0

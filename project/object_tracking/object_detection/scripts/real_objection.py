@@ -25,14 +25,6 @@ class RealObjectionNode(rclpy.node.Node):
         self.declare_parameter('cam_name', 'cam_name')
         self.cam_name = self.get_parameter('cam_name').get_parameter_value().string_value
 
-        # Set color based on camera name
-        if self.cam_name == "left":
-            self.r = 1.0
-            self.g = 0.0
-        else:
-            self.r = 0.0
-            self.g = 1.0
-
         self.declare_parameter('topic_camera_depth', 'topic_camera_depth')
         self.topic_camera_depth = self.get_parameter('topic_camera_depth').get_parameter_value().string_value
 
@@ -42,8 +34,8 @@ class RealObjectionNode(rclpy.node.Node):
         self.declare_parameter('base_frame', 'base_frame')
         self.base_frame = self.get_parameter('base_frame').get_parameter_value().string_value
 
-        self.declare_parameter('topic_tree', 'topic_tree')
-        self.topic_tree = self.get_parameter('topic_tree').get_parameter_value().string_value
+        self.declare_parameter('topic_person', 'topic_person')
+        self.topic_person = self.get_parameter('topic_person').get_parameter_value().string_value
 
         self.declare_parameter('topic_object', 'topic_object')
         self.topic_object = self.get_parameter('topic_object').get_parameter_value().string_value
@@ -58,7 +50,7 @@ class RealObjectionNode(rclpy.node.Node):
         self.limit_y = self.get_parameter('limit_y').get_parameter_value().double_value
 
         # Create a topic for the array of markers
-        self.topic_tree_array = self.topic_tree + "_array"
+        self.topic_person_array = self.topic_person + "_array"
         self.need_info = True
         self.camera = PinholeCameraModel()
         self.count_maker = 0
@@ -66,7 +58,7 @@ class RealObjectionNode(rclpy.node.Node):
         self.read_object = False
 
         # Publisher for MarkerArray
-        self.pub_maker = self.create_publisher(MarkerArray, self.topic_tree, 10)
+        self.pub_maker = self.create_publisher(MarkerArray, self.topic_person, 10)
 
         # Subscriptions to camera depth, camera info, and object position
         self.subscription_camera_depth = self.create_subscription(
@@ -91,7 +83,7 @@ class RealObjectionNode(rclpy.node.Node):
         self.data_object = Float32MultiArray()
 
         # Publisher for the array of object positions
-        self.pub_object = self.create_publisher(Float32MultiArray, self.topic_tree_array, 2)
+        self.pub_object = self.create_publisher(Float32MultiArray, self.topic_person_array, 2)
 
         # Timer callback for processing data
         timer_period = 0.01  # seconds
@@ -108,16 +100,14 @@ class RealObjectionNode(rclpy.node.Node):
         u = position[:num_object]
         v = position[num_object:]
         for i in range(num_object):
-            if ((u[i] > self.limit_x or v[i] < self.limit_y) and self.cam_name == 'left') or (
-                    (u[i] < self.limit_x or v[i] < self.limit_y) and self.cam_name == 'right'):
-                distance = self.get_distance(data, u[i], v[i])
-                if 0.0 < distance < self.permit_distance:
-                    xyz_ray = self.camera.projectPixelTo3dRay([u[i], v[i]])
-                    x = xyz_ray[2] * distance
-                    y = xyz_ray[0] * distance
-                    z = xyz_ray[1] * distance
-                    point = [x, -y, z]
-                    list_real_position.append(point)
+            distance = self.get_distance(data, u[i], v[i])
+            if 0.0 < distance < self.permit_distance:
+                xyz_ray = self.camera.projectPixelTo3dRay([u[i], v[i]])
+                x = xyz_ray[2] * distance
+                y = xyz_ray[0] * distance
+                z = xyz_ray[1] * distance
+                point = [x, -y, z]
+                list_real_position.append(point)
         return list_real_position
 
     def listener_callback_image_depth(self, data):
@@ -147,8 +137,8 @@ class RealObjectionNode(rclpy.node.Node):
             marker.scale.y = 0.2
             marker.scale.z = 1.0
             marker.color.a = 1.0
-            marker.color.r = self.r
-            marker.color.g = self.g
+            marker.color.r = 0.0
+            marker.color.g = 1.0
             marker.color.b = 0.0
             marker.pose.orientation.w = 1.0
             marker.pose.position.x = float(position[i][0])
