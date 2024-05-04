@@ -7,23 +7,27 @@ Welcome to Intelligence Robotics Course offered by the [Networked Robotic System
 The project is constructed using Agilex's Scout Mini Omni platform, which are outlined as follows:
 ```
 irobot/
-├── irobot                          // Original packages
-│   ├── scout_ros2                  // Original packages for Irobot
-|   |   ├──scout_base               // Base for Irobot
-|   |   ├──scout_msgs               // Messages for Irobot
-|   |   ├──scout_simulation         // Simulation for Irobot
-|   |   ├──velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
-│   |   ├──zed-ros2-wrapper         // Communication with ZED X
-│   ├──ugv_sdk                      // Protocol to transmit data with Irobot 
-|   ├── perception_pcl              // point cloud for Velodyne
-|   ├── pcl_msgs                    // point cloud for Velodyne
-|   ├── velodyne                    // point cloud for Velodyne
-|   ├── pointcloud_to_laserscan     // Convert poincloud to laserscan
-|   ├── project                     // Project packages for Irobot
-|   |   ├──train_model_yolov8       // Package for training YOLOv8 model
-|   |   ├──autonoumous_navigation   // Package for autonomous navigation
-|   |   ├──object_tracking          // Package for object tracking
-├── student_pks                     // PStudent packages - Place your packages here with your name to test your programs.
+├── irobot                           // Original packages
+│   ├── pcl_msgs                     // point cloud for Velodyne
+│   ├── perception_pcl               // point cloud for Velodyne
+│   ├── scout_ros2                   // Original packages for Irobot
+│   │   ├── scout_base               // Base for Irobot
+│   │   ├── scout_msgs               // Messages for Irobot
+│   │   ├── scout_simulation         // Simulation for Irobot
+│   │   ├── velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
+│   │   └── zed-ros2-wrapper         // Communication with ZED X
+│   ├── ugv_sdk                      // Protocol to transmit data with Irobot 
+│   └── velodyne                     // point cloud for Velodyne
+├── obstacle_detect                  // Package for building costmap
+├── pointcloud_to_laserscan          // Convert poincloud to laserscan
+├── project                          // Project packages for Irobot
+│   ├── autonoumous_navigation       // Package for autonomous navigation
+│   ├── object_tracking              // Package for object tracking
+│   │   ├── object_detection         // Package for object detection
+│   │   └── point_cal                // Package for calculating target points
+│   └── train_model_yolov8           // Package for training YOLOv8 model
+├── run_sensor
+├── student_pks                      // PStudent packages - Place your packages here with your name to test your programs.
 └── README.md
 ```
 Please ensure that your packages are named in lowercase and do not contain any special characters. Place them in the ``student_pkgs`` directory.
