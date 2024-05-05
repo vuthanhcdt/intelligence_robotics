@@ -44,6 +44,38 @@ Ensure to explore these links for detailed and helpful resources throughout your
 
 ## Install Dependent ROS Packages
 The source code is designed to be used on Ubuntu 22.04 (ROS Humble), making it highly recommended to utilize Ubuntu 22.04 for optimal compatibility. To get started, open your terminal and execute the following commands to install the dependent packages for ROS2:
+### Jetson orin
+```
+sudo apt-get install ros-humble-joy ros-humble-teleop-twist-joy \
+  ros-humble-teleop-twist-keyboard ros-humble-laser-proc \
+  ros-humble-urdf ros-humble-xacro \
+  ros-humble-compressed-image-transport ros-humble-rqt\
+  ros-humble-interactive-markers \
+  ros-humble-slam-toolbox\
+  ros-humble-rqt ros-humble-rqt-common-plugins\
+  ros-humble-robot-localization\
+  ros-humble-realsense2-camera\
+  ros-humble-realsense2-description\
+  build-essential git cmake libasio-dev\
+  ros-humble-tf2-geometry-msgs\
+  ros-humble-eigen-stl-containers\
+  ros-humble-ament-cmake-clang-format\
+  ros-humble-nmea-msgs\
+  ros-humble-mavros\
+  ros-humble-navigation2\
+  ros-humble-nav2-bringup\
+  ros-humble-bondcpp\
+  ros-humble-ompl\
+  ros-humble-pcl-ros\
+  ros-humble-sensor-msgs-py\
+  ros-humble-tf2-tools\
+  ros-humble-robot-state-publisher\
+  ros-humble-ros-core\
+  ros-humble-geometry2\
+  ros-humble-tf2-sensor-msgs\
+  libompl-dev
+```
+### Host computer
 ```
 sudo apt-get install ros-humble-joy ros-humble-teleop-twist-joy \
   ros-humble-teleop-twist-keyboard ros-humble-laser-proc \
