@@ -32,4 +32,4 @@ srv_gen/
 *.project
 *.cproject
 *.pydevproject
-*~
+velodyne_gazebo_plugins/
