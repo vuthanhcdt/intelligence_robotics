@@ -118,6 +118,7 @@ Open the new terminal and do these commands:
 mkdir -p ~/irobot_ws/src
 cd ~/irobot_ws/src/
 git clone https://github.com/vuthanhcdt/intelligence_robotics.git
+git clone https://github.com/vuthanhcdt/velodyne_gazebo_plugins.git #only for host computer
 cd ~/irobot_ws
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install --cmake-args=-DCMAKE_BUILD_TYPE=Release --parallel-workers $(nproc)
@@ -126,7 +127,7 @@ echo "export ROS_DOMAIN_ID=170" >> ~/.bashrc
 ```
 Commands for iRobot Usage
 
-- Launch the simulation in a warehouse environment with Gazebo.
+- Launch the simulation in a warehouse environment with Gazebo (only for host computer).
 ```
 ros2 launch scout_simulation simulation.launch.py
 ```
