@@ -11,4 +11,3 @@ point_cal:
     base_link_frame: 'base_link'
     camera_frame: 'camera_link'
     base_scan_frame: 'base_scan'
-    goal: 'goal'

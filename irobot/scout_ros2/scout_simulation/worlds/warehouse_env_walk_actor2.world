@@ -6145,11 +6145,47 @@
         <trajectory id='0' type='walking'>
           <waypoint>
             <time>0</time>
-            <pose>-1 0 0 0 -0 1.5708</pose>
+            <pose>-1 0 0 0 0 1.5708</pose>
           </waypoint>
           <waypoint>
-            <time>15</time>
-            <pose>-1 5 0 0 -0 1.5708</pose>
+            <time>30</time>
+            <pose>-1 20 0 0 0 1.5708</pose>
+          </waypoint>
+          <waypoint>
+            <time>38</time>
+            <pose>2 23 0 0 0 0.7854</pose>
+          </waypoint>
+          <waypoint>
+            <time>52</time>
+            <pose>9 30 0 0 0 0.7854</pose>
+          </waypoint>
+          <waypoint>
+            <time>54</time>
+            <pose>9 30 0 0 0 3.1416</pose>
+          </waypoint>
+          <waypoint>
+            <time>90</time>
+            <pose>-9 30 0 0 0 3.1416</pose>
+          </waypoint>
+          <waypoint>
+            <time>94</time>
+            <pose>-9 30 0 0 0  5.4978</pose>
+          </waypoint>
+          <waypoint>
+            <time>110</time>
+            <pose>-2 23 0 0 0  5.4978</pose>
+          </waypoint>
+          <waypoint>
+            <time>118</time>
+            <pose>-1 20 0 0 0 4.7123</pose>
+          </waypoint>
+          <waypoint>
+            <time>148</time>
+            <pose>-1 1 0 0 0 4.7123</pose>
+          </waypoint>
+          <waypoint>
+            <time>150</time>
+            <pose>-1 0 0 0 0 1.5708</pose>
           </waypoint>
         </trajectory>
       </script>

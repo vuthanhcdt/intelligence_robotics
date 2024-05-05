@@ -9,12 +9,12 @@ import os
 from pathlib import Path
 
 MY_ROBOT = os.environ.get('ROBOT', "scout_mini")
-MY_ENVIRONMENT = os.environ.get('ENV', "warehouse_env_walk_actor2")
+MY_ENVIRONMENT = os.environ.get('ENV', "tree")
 
 def generate_launch_description():
     default_world_path = os.path.join(get_package_share_directory('scout_simulation'), 'worlds', MY_ENVIRONMENT + '.world')
 
-    use_sim_time = LaunchConfiguration('use_sim_time', default='true')
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
     robot_dir = LaunchConfiguration(
         'robot_dir',
@@ -34,8 +34,8 @@ def generate_launch_description():
     spawn_entity = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        # arguments=['-entity', MY_ROBOT, '-file', urdf,"-x", "3.0", "-y", "0.0", "-z", "0.0","-R","0.0","-P","0.0","-Y","2.375"],
-        arguments=['-entity', MY_ROBOT, '-file', urdf,"-x", "0.0", "-y", "0.0", "-z", "0.0","-R","0.0","-P","0.0","-Y","1.5732"],
+        arguments=['-entity', MY_ROBOT, '-file', urdf,"-x", "-2.0", "-y", "0.0", "-z", "0.0","-R","0.0","-P","0.0","-Y","0.0"],
+        # arguments=['-entity', MY_ROBOT, '-file', urdf,"-x", "0.0", "-y", "0.0", "-z", "0.0","-R","0.0","-P","0.0","-Y","1.5732"],
         output='screen',
         )
 

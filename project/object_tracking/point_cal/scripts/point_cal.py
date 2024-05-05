@@ -60,10 +60,6 @@ class ref_calculate(Node):
         self.declare_parameter('base_scan_frame', 'base_scan')
         self.base_scan_frame = self.get_parameter('base_scan_frame').get_parameter_value().string_value
 
-        self.declare_parameter('goal', 'goal')
-        self.goal = self.get_parameter('goal').get_parameter_value().string_value
-
-
         self.tf_buffer = tf2_ros.Buffer()
         self.listener = tf2_ros.TransformListener(self.tf_buffer, self)
 
@@ -86,7 +82,7 @@ class ref_calculate(Node):
         
         # Publisher for MarkerArray
         self.pub_maker = self.create_publisher(MarkerArray, 'predect_circle', 10)
-        self.goal_pub = self.create_publisher(Pose2D, self.goal, self.qos)
+        self.goal_pub = self.create_publisher(Pose2D, 'goal_point', self.qos)
         self.oval_pub = self.create_publisher(MarkerArray, "oval_point", self.qos)
 
         
@@ -147,7 +143,7 @@ class ref_calculate(Node):
                     if self.get_laser == False:
                         self.get_laser = True
                 except:
-                    print('transform error!')
+                    # print('transform error!')
                     pass 
 
     def scan_cb(self, msg:LaserScan):
@@ -206,7 +202,7 @@ class ref_calculate(Node):
         min = np.argmin(self.cost, axis=0)
         self.goal_pos.x = self.Point[min[0],0] 
         self.goal_pos.y = self.Point[min[0],1]
-        self.goal_pos.theta = math.atan2(self.goal_pos.y , self.goal_pos.x)
+        self.goal_pos.theta = math.atan2(self.person[1] - self.Point[min[0],1] , self.person[0] - self.Point[min[0],0])
         self.goal_pub.publish(self.goal_pos)
         self.pub_oval(min[0], min[1])
     

@@ -44,7 +44,7 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  launch/run_sensor.launch.py
+  launch/object_tracking_sensor.launch.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
