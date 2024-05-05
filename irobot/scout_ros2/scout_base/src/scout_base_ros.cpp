@@ -15,7 +15,7 @@
 namespace westonrobot {
 ScoutBaseRos::ScoutBaseRos(std::string node_name)
     : rclcpp::Node(node_name), keep_running_(false) {
-  this->declare_parameter("port_name", "can0");
+  this->declare_parameter("port_name", "can2");
 
   this->declare_parameter("odom_frame", "odom");
   this->declare_parameter("base_frame", "base_link");
@@ -31,7 +31,7 @@ ScoutBaseRos::ScoutBaseRos(std::string node_name)
 }
 
 void ScoutBaseRos::LoadParameters() {
-  this->get_parameter_or<std::string>("port_name", port_name_, "can0");
+  this->get_parameter_or<std::string>("port_name", port_name_, "can2");
 
   this->get_parameter_or<std::string>("odom_frame", odom_frame_, "odom");
   this->get_parameter_or<std::string>("base_frame", base_frame_, "base_link");
