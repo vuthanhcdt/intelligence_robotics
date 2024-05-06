@@ -274,9 +274,8 @@
           </waypoint>
         </trajectory>
       </script>
-
     </actor>
-    
+
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose>0.05003 1.24623 23.7217 1e-05 1.5698 -1.572</pose>

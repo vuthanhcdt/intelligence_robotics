@@ -10,7 +10,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
-    node_name='irobot_gazebo_move'
+    node_name='irobot_gazebo_DWA'
     
     # Get the path to the parameters YAML file
     config = os.path.join(
@@ -39,7 +39,7 @@ def generate_launch_description():
     node = launch_ros.actions.Node(
         name=node_name,
         package='visual_control_v1',
-        executable='irobot_gazebo_move.py',
+        executable='irobot_gazebo_DWA.py',
         output='screen',
         emulate_tty=True,
         parameters=[config]
