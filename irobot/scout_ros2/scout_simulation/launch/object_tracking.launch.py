@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 
 MY_ROBOT = os.environ.get('ROBOT', "scout_mini")
-MY_ENVIRONMENT = os.environ.get('ENV', "object_tracking")
+MY_ENVIRONMENT = os.environ.get('ENV', "warehouse_env_walk_actor")
 
 def generate_launch_description():
     default_world_path = os.path.join(get_package_share_directory('scout_simulation'), 'worlds', MY_ENVIRONMENT + '.world')

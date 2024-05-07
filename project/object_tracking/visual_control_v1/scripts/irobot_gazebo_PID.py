@@ -115,13 +115,13 @@ class LocalPlanningNode(Node):
             
             min_vel,  max_vel, min_ang_vel, max_ang_vel = self.set_range()
 
-            v, w = self.PID_Control(0.5, 0.005, 0.01, 0.1)
+            v, w = self.PID_Control(1.5, 0.015, 0.05, 1.0)
             
             v = self.clamp(v, min_vel, max_vel)
             w = self.clamp(w, min_ang_vel, max_ang_vel)
             
             if self.distance_check: twist.linear.x = float(v)
-            if self.angular_check: twist.angular.z = float(w)
+            twist.angular.z = float(w)
 
             self.pre_vel = np.array([v, w])
 

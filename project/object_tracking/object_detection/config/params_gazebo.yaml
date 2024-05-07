@@ -3,7 +3,7 @@ object_detection:
     topic_camera: '/camera/image_raw'
     cam_name: 'camera'
     model_yolo: 'yolov8n.pt'
-    model_yolo_custom: 'gazebo_detect_170124.pt'  # gazebo_detect_170124  yolov8n
+    model_yolo_custom: 'gazebo_person.pt'  # gazebo_detect_170124  yolov8n
     topic_object: 'object_detection'
 
 real_objection:
