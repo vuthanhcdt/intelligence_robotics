@@ -9,6 +9,10 @@ import os
 from pathlib import Path
 
 MY_ROBOT = os.environ.get('ROBOT', "scout_mini")
+##############  World  ##############
+# warehouse_env_walk_actor2
+# tree
+######################################
 MY_ENVIRONMENT = os.environ.get('ENV', "tree")
 
 def generate_launch_description():

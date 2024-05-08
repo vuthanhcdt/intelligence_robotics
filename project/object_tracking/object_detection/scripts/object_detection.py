@@ -2,6 +2,7 @@
 
 import rclpy
 from rclpy.node import Node
+import numpy as np
 import  time, os
 from sensor_msgs.msg import Image
 import torch
@@ -63,14 +64,30 @@ class object_detection(rclpy.node.Node):
         while not self.exit_signal:
             try:
                 if self.run_signal:
+                    object_position = []
                     self.lock.acquire()
                     self.results=self.model(self.cv_image,verbose=False, conf=conf_thres,iou=iou_thres)
-                    list_object=self.results[0].boxes.xyxy
-                    self.x_center=((list_object[:,0]+list_object[:,2])/2).int()
-                    self.y_center=((list_object[:,1]+list_object[:,3])/2).int()
-                    object_position = torch.cat((self.x_center,self.y_center)).tolist()
-                    self.data_object.data=object_position
+                    detection_count = self.results[0].boxes.shape[0]
+                    for i in range(detection_count):
+                        cls = int(self.results[0].boxes.cls[i].item())
+                        # print(cls)
+                        if cls == 0:
+                            list_object = self.results[0].boxes.xyxy[i].cpu().numpy()
+                            self.x_center = int((list_object[0]+list_object[2])/2)
+                            self.y_center = int((list_object[1]+list_object[3])/2)
+                            object_position = np.array([self.x_center, self.y_center]).tolist()
+                            break
+                            
+                    self.data_object.data = object_position
                     self.pub_object.publish(self.data_object)
+
+                    # list_object = self.results[0].boxes.xyxy
+                    # self.x_center=((list_object[:,0]+list_object[:,2])/2).int()
+                    # self.y_center=((list_object[:,1]+list_object[:,3])/2).int()
+                    # object_position = torch.cat((self.x_center,self.y_center)).tolist()
+                    # self.data_object.data = object_position
+                    # self.pub_object.publish(self.data_object)
+                    # print(object_position)
                     self.lock.release()
                     self.run_signal = False
                 sleep(0.0001)

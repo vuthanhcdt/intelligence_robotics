@@ -95,7 +95,7 @@ class LocalPlanningNode(Node):
             print(self.pre_goal)
             print(self.pre_goal)
 
-        if self.count % 50 == 0 and \
+        if self.count % 10 == 0 and \
             self.pre_goal[0] == self.goal[0] and self.pre_goal[1] == self.goal[1] and self.pre_goal[2] == self.goal[2]:
             self.get_goal = False
         self.pre_goal = self.goal
@@ -127,8 +127,8 @@ class LocalPlanningNode(Node):
 
         elif self.get_goal == False:
             twist.linear.x = float(0.0)
-            if self.pre_vel[1] > 0.0: twist.angular.z = float(0.1)
-            else:  twist.angular.z = float(-0.1)
+            if self.pre_vel[1] > 0.0: twist.angular.z = float(0.2)
+            else:  twist.angular.z = float(-0.2)
 
         print("get_goal = ", self.get_goal)
         print("distance_check = ", self.distance_check)
