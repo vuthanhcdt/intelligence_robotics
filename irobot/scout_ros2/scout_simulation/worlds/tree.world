@@ -155,9 +155,9 @@
       <pose>5 5 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>192 477000000</sim_time>
-      <real_time>29 673523390</real_time>
-      <wall_time>1714914717 599814241</wall_time>
+      <sim_time>0</sim_time>
+      <real_time>0</real_time>
+      <wall_time>0</wall_time>
       <iterations>29572</iterations>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
