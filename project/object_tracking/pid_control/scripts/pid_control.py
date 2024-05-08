@@ -41,7 +41,7 @@ class LocalPlanningNode(Node):
 
     def listener_callback_goal(self, msg:Pose2D):
         self.goal = msg
-        self.goal.theta = math.atan2(self.goal.y, self.goal.x)
+        # self.goal.theta = math.atan2(self.goal.y, self.goal.x)
         self.get_goal = True
     
     def mul_pose2d(self, a:Pose2D, b:Pose2D):
@@ -60,7 +60,6 @@ class LocalPlanningNode(Node):
         # calculate vx
         PTerm = self.Kp * self.goal.x # 比例
         self.ITerm[0] += self.goal.x  * delta_time # 积分
-        DTerm = 0.0
         if delta_time > 0:
             DTerm = delta_error.x / delta_time # 微分
         
@@ -69,7 +68,6 @@ class LocalPlanningNode(Node):
         # calculate vy
         PTerm = self.Kp * self.goal.y # 比例
         self.ITerm[1] += self.goal.y  * delta_time # 积分
-        DTerm = 0.0
         if delta_time > 0:
             DTerm = delta_error.y / delta_time # 微分
         
@@ -78,14 +76,13 @@ class LocalPlanningNode(Node):
         # calculate w(omega)
         PTerm = self.Kp * self.goal.theta # 比例
         self.ITerm[2] += self.goal.theta  * delta_time # 积分
-        DTerm = 0.0
         if delta_time > 0:
             DTerm = delta_error.theta / delta_time # 微分
         
         w = PTerm + (self.Ki * self.ITerm[2]) + (self.Kd * DTerm)
 
         self.last_time = self.current_time
-        
+
         return vx, vy, w
 
     def clip(self, value, min, max):
@@ -96,6 +93,9 @@ class LocalPlanningNode(Node):
 
         if self.count % 50 == 0 and self.pre_goal == self.goal:
             self.get_goal = False
+        if self.count % 200 == 0:
+            self.ITerm[0] = 0.0
+            self.ITerm[1] = 0.0
         self.pre_goal = self.goal
 
     def timer_callback(self):

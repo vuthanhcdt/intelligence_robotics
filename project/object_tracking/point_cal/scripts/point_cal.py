@@ -48,6 +48,9 @@ class ref_calculate(Node):
         self.declare_parameter('coff_robot_dis', 1.0)
         self.coff_robot_dis = self.get_parameter('coff_robot_dis').get_parameter_value().double_value
 
+        self.declare_parameter('coff_robot_ang', 1.0)
+        self.coff_robot_ang = self.get_parameter('coff_robot_ang').get_parameter_value().double_value
+
         self.declare_parameter('topic_person', 'person_array')
         self.topic_person = self.get_parameter('topic_person').get_parameter_value().string_value
 
@@ -162,8 +165,12 @@ class ref_calculate(Node):
         # print(x,y)
         th_person = math.atan2(self.person[1], self.person[0])
         th_point = math.atan2(y, x)
-        # print(abs(th_person - th_point))
-        return abs(th_person - th_point) / np.pi *100
+        th_point_to_person = math.atan2(self.person[1]-y, self.person[0]-x)
+        # print(abs(th_person - th_point_to_person))
+        return abs(th_person - th_point_to_person) / np.pi *100
+    
+    def dis_cost(self, x:float, y:float):
+        return math.hypot(x,y)
         
     def obstacle_cost(self, x:float, y:float):
         cost = 0.0
@@ -183,7 +190,7 @@ class ref_calculate(Node):
         cost_obs = 0.0
         cost_ang = 0.0
 
-        cost_ang = self.coff_robot_dis * self.ang_cost(x,y)
+        cost_ang = self.coff_robot_ang * self.ang_cost(x,y)
 
         if self.obstacle != []:
             cost_obs = self.coff_static_obstacle * self.obstacle_cost(x,y)
