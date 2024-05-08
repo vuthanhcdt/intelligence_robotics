@@ -30,6 +30,10 @@ class LocalPlanningNode(Node):
         self.lim_max_ang_vel = self.declare_parameter('lim_max_ang_vel',0.78539).get_parameter_value().double_value
         self.goal_tolerate_dis = self.declare_parameter('goal_tolerate_dis',0.5).get_parameter_value().double_value
         self.goal_tolerate_ang = self.declare_parameter('goal_tolerate_ang',0.5).get_parameter_value().double_value
+        self.kp_dis = self.declare_parameter('kp_dis',1.0).get_parameter_value().double_value
+        self.kp_ang = self.declare_parameter('kp_ang',1.5).get_parameter_value().double_value
+        self.ki_ang = self.declare_parameter('ki_ang',0.015).get_parameter_value().double_value
+        self.kd_ang = self.declare_parameter('kd_ang',0.05).get_parameter_value().double_value
 
         self.get_goal = False
         self.distance_check = True
@@ -104,7 +108,7 @@ class LocalPlanningNode(Node):
         twist = Twist()
         self.current_useq = self.pre_vel
 
-        self.check()
+        # self.check()
 
         if self.get_goal == True:
             distance = math.hypot(self.goal[0], self.goal[1])
@@ -115,7 +119,7 @@ class LocalPlanningNode(Node):
             
             min_vel,  max_vel, min_ang_vel, max_ang_vel = self.set_range()
 
-            v, w = self.PID_Control(1.5, 0.015, 0.05, 1.0)
+            v, w = self.PID_Control(self.kp_ang, self.ki_ang, self.kd_ang, self.kp_dis)
             
             v = self.clamp(v, min_vel, max_vel)
             w = self.clamp(w, min_ang_vel, max_ang_vel)
@@ -140,7 +144,7 @@ class LocalPlanningNode(Node):
         self.distance_check = True
         self.angular_check = True
 
-        # self.get_goal = False
+        self.get_goal = False
 
 
 

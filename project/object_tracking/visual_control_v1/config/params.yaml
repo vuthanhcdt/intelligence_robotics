@@ -26,8 +26,12 @@ irobot_gazebo_PID:
     samplingtime: 0.1
     max_acc: 3.0
     max_ang_acc: 3.0
-    lim_max_vel: 2.0
+    lim_max_vel: 1.0
     lim_min_vel: 0.0
     lim_max_ang_vel: 1.5732
     goal_tolerate_dis: 0.25
     goal_tolerate_ang: 0.01
+    kp_dis : 1.0
+    kp_ang : 1.5
+    ki_ang : 0.015
+    kd_ang : 0.05
