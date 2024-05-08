@@ -59,9 +59,9 @@ class LocalPlanningNode(Node):
         distance = math.hypot(self.goal[0], self.goal[1])
         v = kp2 * distance
 
-        theta_robot_goal = math.atan2(self.goal[1], self.goal[0])
+        # theta_robot_goal = math.atan2(self.goal[1], self.goal[0])
         theta_goal_person = self.goal[2]
-        theta_error = theta_robot_goal
+        theta_error = theta_goal_person
         self.error_sum = self.error_sum + theta_error
         w = kp * (theta_error) + ki * self.error_sum + kd * (theta_error - self.pre_error)
         self.pre_error = theta_error

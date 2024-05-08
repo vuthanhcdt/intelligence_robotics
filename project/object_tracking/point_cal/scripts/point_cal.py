@@ -202,7 +202,7 @@ class ref_calculate(Node):
         min = np.argmin(self.cost, axis=0)
         self.goal_pos.x = self.Point[min[0],0] 
         self.goal_pos.y = self.Point[min[0],1]
-        self.goal_pos.theta = math.atan2(self.person[1] - self.Point[min[0],1] , self.person[0] - self.Point[min[0],0])
+        self.goal_pos.theta = math.atan2(self.person[1], self.person[0])
         self.goal_pub.publish(self.goal_pos)
         self.pub_oval(min[0], min[1])
     

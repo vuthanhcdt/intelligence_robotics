@@ -229,47 +229,47 @@
             <pose>0 0 0 0 0 0</pose>
           </waypoint>
           <waypoint>
-            <time>8</time>
+            <time>16</time>
             <pose>8 0 0 0 0 0</pose>
           </waypoint>
           <waypoint>
-            <time>10</time>
+            <time>20</time>
             <pose>10 0 0 0 0 .785</pose>
           </waypoint>
           <waypoint>
-            <time>12</time>
+            <time>24</time>
             <pose>10 2 0 0 0 1.57</pose>
           </waypoint>
           <waypoint>
-            <time>18</time>
+            <time>36</time>
             <pose>10 8 0 0 0 1.57</pose>
           </waypoint>
           <waypoint>
-            <time>20</time>
+            <time>40</time>
             <pose>10 10 0 0 0 2.356</pose>
           </waypoint>
           <waypoint>
-            <time>22</time>
+            <time>44</time>
             <pose>8 10 0 0 0 3.142</pose>
           </waypoint>
           <waypoint>
-            <time>28</time>
+            <time>56</time>
             <pose>2 10 0 0 0 3.142</pose>
           </waypoint>
           <waypoint>
-            <time>30</time>
+            <time>60</time>
             <pose>0 10 0 0 0 3.927</pose>
           </waypoint>
           <waypoint>
-            <time>32</time>
+            <time>64</time>
             <pose>0 8 0 0 0 4.712</pose>
           </waypoint>
           <waypoint>
-            <time>38</time>
+            <time>76</time>
             <pose>0 2 0 0 0 4.712</pose>
           </waypoint>
           <waypoint>
-            <time>40</time>
+            <time>80</time>
             <pose>0 0 0 0 0 6.284</pose>
           </waypoint>
         </trajectory>
