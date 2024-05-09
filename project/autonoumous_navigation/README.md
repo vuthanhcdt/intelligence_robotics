@@ -1,4 +1,6 @@
 # Fundamentals of Mobile Robot Navigation, Path Planning, and Obstacle Avoidance
+![](media/SLAM.gif)
+
 This package includes essential commands for understanding the fundamentals of mobile robot navigation, path planning, and obstacle avoidance.
 
 If you want to try in the simulator, make sure Gazebo is enabled by running the following command:
