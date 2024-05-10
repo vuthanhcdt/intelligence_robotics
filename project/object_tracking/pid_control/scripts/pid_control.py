@@ -113,6 +113,7 @@ class LocalPlanningNode(Node):
         print(f'vx = {self.control.linear.x}, vy = {self.control.linear.y}, w = {self.control.angular.z}')
         print("===================================================")
 
+        # pub velocity
         self.distance_check = True
         self.angular_check = True
 
