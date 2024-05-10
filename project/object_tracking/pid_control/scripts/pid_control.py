@@ -13,7 +13,7 @@ from std_msgs.msg import Int64, Float64
 class LocalPlanningNode(Node):
     def __init__(self):
         super().__init__('pid_control')
-        self.qos = QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT,depth=1)
+        self.qos = QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT,depth=1) # this for pub and sub
 
         self.Kp = self.declare_parameter('Kp',5.0).get_parameter_value().double_value
         self.Ki = self.declare_parameter('Ki',5.0).get_parameter_value().double_value
@@ -23,26 +23,13 @@ class LocalPlanningNode(Node):
         self.max_ang_vel = self.declare_parameter('max_ang_vel',0.78539).get_parameter_value().double_value
         self.goal_tolerate_dis = self.declare_parameter('goal_tolerate_dis',0.5).get_parameter_value().double_value
         self.goal_tolerate_ang = self.declare_parameter('goal_tolerate_ang',0.5).get_parameter_value().double_value
+        
+        # setup parameters
+        
+        # setup pub and sub
+        # sub - point, pub - velocity (use ros2 topic list to check topic names)
 
-        self.get_goal = False
-        self.distance_check = True
-        self.angular_check = True
-        self.goal = Pose2D()
-        self.pre_goal = Pose2D()
-        self.control = Twist()
-        self.count = 0
-        self.last_time = time.time()
-        self.ITerm = np.zeros((3,1))
-
-        self.sub = self.create_subscription(Pose2D, "goal_point", self.listener_callback_goal, self.qos)
-        self.pub_vel = self.create_publisher(Twist, "cmd_vel", 1)
-
-        self.timer = self.create_timer(self.samplingtime, self.timer_callback)  # Timer for periodic execution
-
-    def listener_callback_goal(self, msg:Pose2D):
-        self.goal = msg
-        # self.goal.theta = math.atan2(self.goal.y, self.goal.x)
-        self.get_goal = True
+        self.timer = self.create_timer(self.samplingtime, self.timer_callback)  
     
     def mul_pose2d(self, a:Pose2D, b:Pose2D):
         pose = Pose2D()
@@ -85,9 +72,6 @@ class LocalPlanningNode(Node):
 
         return vx, vy, w
 
-    def clip(self, value, min, max):
-        return min if value < min else max if value > max else value
-
     def check(self):
         self.count += 1
 
@@ -108,11 +92,9 @@ class LocalPlanningNode(Node):
             if abs(self.goal.theta) < self.goal_tolerate_ang:
                 self.angular_check = False
 
-            vx, vy, w = self.PID_Control()
+            # get velocity from PID_Control
             
-            vx = self.clip(vx, -self.max_lin_vel, self.max_lin_vel)
-            vy = self.clip(vy, -self.max_lin_vel, self.max_lin_vel)
-            w = self.clip(w, -self.max_ang_vel, self.max_ang_vel)
+            # check if velocity is out of range 
             
             if self.distance_check: 
                 self.control.linear.x = float(vx)
@@ -131,7 +113,6 @@ class LocalPlanningNode(Node):
         print(f'vx = {self.control.linear.x}, vy = {self.control.linear.y}, w = {self.control.angular.z}')
         print("===================================================")
 
-        self.pub_vel.publish(self.control)
         self.distance_check = True
         self.angular_check = True
 
