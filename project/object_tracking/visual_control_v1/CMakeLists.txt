@@ -44,8 +44,8 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  scripts/irobot_gazebo_DWA.py
-  launch/irobot_gazebo_DWA.launch.py
+  scripts/pid_control.py
+  launch/pid_control.launch.py
   scripts/irobot_gazebo_PID.py
   launch/irobot_gazebo_PID.launch.py
   DESTINATION lib/${PROJECT_NAME}

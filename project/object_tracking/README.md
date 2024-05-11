@@ -5,7 +5,9 @@ If you want to try in the simulator, make sure Gazebo is enabled by running the 
 ```
 ros2 launch scout_simulation simulation.launch.py
 ros2 launch run_sensor object_tracking_sensor.launch.py
+
 ros2 launch visual_control_v1 irobot_gazebo_PID.launch.py
+ros2 launch visual_control_v1 pid_control.launch.launch.py
 ```
 
 ## 1. Object Detection
@@ -27,4 +29,5 @@ ros2 launch point_cal point_cal.launch.py
 After successfully detecting objects, a navigation framework is employed based on the relative positions of the objects for tracking. The robot will halt if it cannot detect any objects along its path.
 ```
 ros2 launch visual_control_v1 irobot_gazebo_PID.launch.py 
+ros2 launch visual_control_v1 pid_control.launch.py 
 ```

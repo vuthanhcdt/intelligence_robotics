@@ -1,24 +1,13 @@
-irobot_gazebo_DWA:
+pid_control:
   ros__parameters:
-    T: 5.0
-    samplingtime: 0.1
-    num_vel_rollouts: 4
-    num_ang_vel_rollouts: 41
-    robot_threshold: 0.35 
-    dis_safe_obstacle: 0.45
-    map_resolution: 0.25
-    map_origin_x: -5.0
-    map_origin_y: -5.0
-    weight_angle_goal: 0.6
-    weight_vel: 0.1
-    weight_obs: 1.0
-    score_obstacle: 2.0
-    max_acc: 3.0
-    max_ang_acc: 3.0
-    lim_max_vel: 1.5
-    lim_min_vel: 0.0
-    lim_max_ang_vel: 1.5732
-    goal_shift: 0.75
+    Kp: 1.2
+    Ki: 0.25
+    Kd: 0.6
+    samplingtime: 0.01
+    max_lin_vel: 1.2
+    max_ang_vel: 1.5732
+    goal_tolerate_dis: 0.25
+    goal_tolerate_ang: 0.01
 
 irobot_gazebo_PID:
   ros__parameters:
