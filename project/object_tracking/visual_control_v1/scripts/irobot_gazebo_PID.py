@@ -69,9 +69,6 @@ class LocalPlanningNode(Node):
         self.error_sum = self.error_sum + theta_error
         w = kp * (theta_error) + ki * self.error_sum + kd * (theta_error - self.pre_error)
         self.pre_error = theta_error
-        # if self.error_sum > 100.0: self.error_sum -= 100.0
-
-        # print(theta_robot_goal , self.error_sum)
 
         return v, w
 
@@ -145,16 +142,6 @@ class LocalPlanningNode(Node):
         self.angular_check = True
 
         self.get_goal = False
-
-
-
-
-
-
-
-
-
-
 
 def start():
 
