@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(visual_control_v1)
+project(pub_neartest_distance)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -44,8 +44,8 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  scripts/irobot_gazebo_PID.py
-  launch/irobot_gazebo_PID.launch.py
+  scripts/pub_neartest_distance.py
+  launch/pub_neartest_distance.launch.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
