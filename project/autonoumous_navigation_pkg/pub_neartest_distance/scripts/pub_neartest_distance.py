@@ -1,17 +1,11 @@
 #!/usr/bin/env python3
 import rclpy, math, tf2_ros
-import numpy as np
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy
-from sensor_msgs.msg import Image, CameraInfo, LaserScan
-from time import sleep
-from image_geometry import PinholeCameraModel
-from std_msgs.msg import Int16MultiArray, Float32MultiArray
-from nav_msgs.msg import Path
-from geometry_msgs.msg import TransformStamped, PoseStamped, Point, Pose2D, Pose
 from tf2_ros.buffer import Buffer
+from sensor_msgs.msg import LaserScan
 from tf2_geometry_msgs import PoseStamped
-from visualization_msgs.msg import Marker, MarkerArray
+from geometry_msgs.msg import PoseStamped, Point, Pose2D
 
 class ref_calculate(Node):
 
@@ -19,7 +13,6 @@ class ref_calculate(Node):
         """
         Initialize the node, open serial port
         """        
-        # Init node
         super().__init__('pub_neartest_distance')
 
         self.qos = QoSProfile(depth=1)
@@ -30,15 +23,14 @@ class ref_calculate(Node):
         self.base_link_frame = self.declare_parameter('base_link_frame', 'base_link').get_parameter_value().string_value
         self.base_scan_frame = self.declare_parameter('base_scan_frame', 'base_scan').get_parameter_value().string_value
 
-        self.tf_buffer = tf2_ros.Buffer()
+        self.tf_buffer = Buffer()
         self.listener = tf2_ros.TransformListener(self.tf_buffer, self)
+        self.point = Pose2D()
 
         self.sub = self.create_subscription(LaserScan, '/scan', self.scan_cb, self.qos_scan)
         
-        # Publisher for MarkerArray
-        self.pub_maker = self.create_publisher(MarkerArray, 'predect_circle', 10)
-        self.goal_pub = self.create_publisher(Pose2D, 'goal_point', self.qos)
-        self.oval_pub = self.create_publisher(MarkerArray, "oval_point", self.qos)
+        # Publish point topic type: Pose2D, topic name:'/near_point'
+        self.point_pub = self.create_publisher(Pose2D, '/near_point', self.qos) ###
 
     def check_angle(self, theta:float):
         while(abs(theta) > math.pi):
@@ -51,7 +43,7 @@ class ref_calculate(Node):
     def transform_laser(self, laser_msg:LaserScan):
         min_ang = laser_msg.angle_min
         increment = laser_msg.angle_increment
-        self.obstacle = np.array([])
+        self.obstacle = []
         for i, value in enumerate(laser_msg.ranges):
             angle = self.check_angle(i * increment + min_ang)
             if value < self.laser_max_dis:
@@ -78,10 +70,21 @@ class ref_calculate(Node):
     def scan_cb(self, msg:LaserScan):
         self.transform_laser(msg)
         min = 1e10
-        for i in range (np.size(self.obstacle)):
-            dis = math.hypot(self.obstacle[i,0],self.obstacle[i,1])
-            if dis < min:
-                min = dis
+        if self.obstacle == []:
+            self.point.x = 999.99
+            print('Out of ', round(self.laser_max_dis,1), ' meters!')
+        else:
+            for obs in self.obstacle:
+                dis = math.hypot(obs[0],obs[1])
+                if dis < min:
+                    min = dis
+                    x = obs[0]
+                    y = obs[1]
+            print('point: (', round(x,2), ',', round(y,2), ')\tdistance: ', round(dis,2))
+            self.point.x = x
+            self.point.y = y
+        # publish point, data name:self.point
+        self.point_pub.publish(self.point) ###
 
 
 def start():
