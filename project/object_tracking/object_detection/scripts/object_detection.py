@@ -71,7 +71,7 @@ class object_detection(rclpy.node.Node):
                     for i in range(detection_count):
                         cls = int(self.results[0].boxes.cls[i].item())
                         # print(cls)
-                        if cls == 0:
+                        if cls == 0 or cls == 1 or cls == 2:
                             list_object = self.results[0].boxes.xyxy[i].cpu().numpy()
                             self.x_center = int((list_object[0]+list_object[2])/2)
                             self.y_center = int((list_object[1]+list_object[3])/2)

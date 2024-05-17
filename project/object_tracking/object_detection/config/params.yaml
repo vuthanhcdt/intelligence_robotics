@@ -1,19 +1,19 @@
 object_detection:
   ros__parameters:
     topic_camera: '/zedx/left/rgb/image_rect_color'
-    cam_name: 'left'
+    cam_name: 'camera'
     model_yolo: 'yolov8n.pt'
     model_yolo_custom: 'AI_detect.pt'
     topic_object: 'object_detection'
 
 real_objection:
   ros__parameters:
-    cam_name: 'left'
+    cam_name: 'camera'
     topic_object: 'object_detection'
     topic_camera_depth: '/zedx/left/depth/depth_registered'
     topic_camera_info: '/zedx/left/depth/camera_info'
     base_frame: 'zedx_base_link'
-    topic_tree: 'left_tree'
+    topic_person: 'person'
     permit_distance: 5.0
-    limit_x: 260
-    limit_y: 300
+    limit_x: 260.0
+    limit_y: 300.0

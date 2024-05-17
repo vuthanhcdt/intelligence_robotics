@@ -12,7 +12,7 @@ from std_msgs.msg import Int16MultiArray
 from std_msgs.msg import Float32MultiArray
 import numpy as np
 
-class RealObjectionNode(rclpy.node.Node):
+class RealObjectionNode(Node):
 
     def __init__(self):
         """
@@ -122,6 +122,8 @@ class RealObjectionNode(rclpy.node.Node):
 
     def listener_callback_object(self, data):
         self.position = data.data
+        print(self.position)
+        print('-------------------')
         self.read_object = True
 
     def publish_maker(self, position):

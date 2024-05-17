@@ -38,6 +38,7 @@ import ament_index_python.packages
 from launch import LaunchDescription
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
@@ -82,4 +83,10 @@ def generate_launch_description():
             output='both',
     )
 
-    return LaunchDescription([container])
+    static_tf2_velodyne = Node(package="tf2_ros",
+                               executable = "static_transform_publisher",
+                               output = "screen",
+                               arguments = ["0.26", "0.0", "0.8", "0.0", "0.0", "0.0", "base_link", "base_scan"]
+                              )
+
+    return LaunchDescription([container, static_tf2_velodyne])
