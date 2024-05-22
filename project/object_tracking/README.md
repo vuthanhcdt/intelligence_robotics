@@ -1,5 +1,6 @@
 # Deep Learning for Object Detection and Object Following
 This package contains essential commands to understand the basic principles of applying deep learning to object detection and tracking using YOLOv8.
+
 ![](media/PID.gif)
 
 ## Simulation
