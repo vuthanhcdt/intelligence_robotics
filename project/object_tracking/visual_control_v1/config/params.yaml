@@ -9,7 +9,7 @@ pid_control:
     goal_tolerate_dis: 0.25
     goal_tolerate_ang: 0.01
 
-irobot_gazebo_PID:
+irobot_PID:
   ros__parameters:
     T: 5.0
     samplingtime: 0.1

@@ -45,7 +45,8 @@ ament_python_install_package(${PROJECT_NAME})
 # Install Python executables
 install(PROGRAMS
   scripts/point_cal.py
-  launch/point_cal.launch.py
+  launch/point_cal_gazebo.launch.py
+  launch/point_cal_real.launch.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

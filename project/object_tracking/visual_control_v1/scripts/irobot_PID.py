@@ -37,7 +37,6 @@ class LocalPlanningNode(Node):
 
         self.get_goal = False
         self.distance_check = True
-        self.angular_check = True
         self.goal = [0.0, 0.0, 0.0]
         self.pre_goal = [0.0, 0.0, 0.0]
         self.error_sum = 0.0
@@ -69,7 +68,8 @@ class LocalPlanningNode(Node):
         self.error_sum = self.error_sum + theta_error
         w = kp * (theta_error) + ki * self.error_sum + kd * (theta_error - self.pre_error)
         self.pre_error = theta_error
-
+        if self.error_sum > 50.0: self.error_sum = 0.0
+        
         return v, w
 
     def set_range(self):
@@ -90,29 +90,14 @@ class LocalPlanningNode(Node):
         else:
             return data
 
-    def check(self):
-        self.count += 1
-        if self.count % 50 == 0:
-            print(self.pre_goal)
-            print(self.pre_goal)
-
-        if self.count % 10 == 0 and \
-            self.pre_goal[0] == self.goal[0] and self.pre_goal[1] == self.goal[1] and self.pre_goal[2] == self.goal[2]:
-            self.get_goal = False
-        self.pre_goal = self.goal
-
     def timer_callback(self):
         twist = Twist()
         self.current_useq = self.pre_vel
-
-        # self.check()
 
         if self.get_goal == True:
             distance = math.hypot(self.goal[0], self.goal[1])
             if distance < self.goal_tolerate_dis:
                 self.distance_check = False
-            if abs(self.goal[2]) < self.goal_tolerate_ang:
-                self.angular_check = False
             
             min_vel,  max_vel, min_ang_vel, max_ang_vel = self.set_range()
 
@@ -133,13 +118,11 @@ class LocalPlanningNode(Node):
 
         print("get_goal = ", self.get_goal)
         print("distance_check = ", self.distance_check)
-        print("angular_check = ", self.angular_check)
         print(f'v = {twist.linear.x}, w = {twist.angular.z}')
         print("===================================================")
 
         self.pub_vel.publish(twist)
         self.distance_check = True
-        self.angular_check = True
 
         # self.get_goal = False
 

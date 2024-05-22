@@ -1,4 +1,4 @@
-point_cal_real:
+point_cal_simulation:
   ros__parameters:
     topic_object: 'HsinChiaChen'
     radius: 1.0
@@ -9,6 +9,6 @@ point_cal_real:
     coff_robot_ang: 1.0
     topic_person: 'person_array'
     base_link_frame: 'base_link'
-    camera_frame: 'zedx_base_link'
+    camera_frame: 'camera_link'
     base_scan_frame: 'base_scan'
 
