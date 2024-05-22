@@ -49,7 +49,7 @@ class LocalPlanningNode(Node):
 
         self.timer = self.create_timer(self.samplingtime, self.timer_callback)  # Timer for periodic execution
 
-        self.pub_vel = self.create_publisher(Twist, "cmd_vel", 3)
+        self.pub_vel = self.create_publisher(Twist, "cmd_vel", 1)
         self.local_path_publisher = self.create_publisher(Path, '/local_path', 10)
         self.sampled_path_publisher = self.create_publisher(MarkerArray, '/sampled_path', 10)
 
@@ -141,7 +141,7 @@ class LocalPlanningNode(Node):
         self.distance_check = True
         self.angular_check = True
 
-        self.get_goal = False
+        # self.get_goal = False
 
 def start():
 

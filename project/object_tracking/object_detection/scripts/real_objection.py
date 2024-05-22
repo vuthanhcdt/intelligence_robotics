@@ -95,6 +95,7 @@ class RealObjectionNode(Node):
         return depths[Idx]
 
     def pixel_point(self, data, position):
+        print(position)
         list_real_position = []
         num_object = int(len(position) / 2)
         u = position[:num_object]
@@ -122,8 +123,8 @@ class RealObjectionNode(Node):
 
     def listener_callback_object(self, data):
         self.position = data.data
-        print(self.position)
-        print('-------------------')
+        # print('position = ', self.position)
+        # print('-------------------')
         self.read_object = True
 
     def publish_maker(self, position):
@@ -164,12 +165,19 @@ class RealObjectionNode(Node):
         self.pub_object.publish(self.data_object)
 
     def timer_callback(self):
+        # print(self.need_info , self.read_depth, self.read_object)
         if self.need_info == False and self.read_depth == True and self.read_object == True:
+            # print("in")
             position = self.pixel_point(self.depth, self.position)
+            # print(position)
             # Convert to one list
             merged_list = [item for sublist in position for item in sublist]
+            # print(merged_list)
             self.publish_maker(position)
             self.publish_object(merged_list)
+            self.need_info = True 
+            self.read_depth = False
+            self.read_object = False
 
 def start():
     rclpy.init()

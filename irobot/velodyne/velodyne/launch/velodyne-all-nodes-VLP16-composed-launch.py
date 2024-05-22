@@ -88,5 +88,7 @@ def generate_launch_description():
                                output = "screen",
                                arguments = ["0.26", "0.0", "0.8", "0.0", "0.0", "0.0", "base_link", "base_scan"]
                               )
-
     return LaunchDescription([container, static_tf2_velodyne])
+
+
+    # return LaunchDescription([container])

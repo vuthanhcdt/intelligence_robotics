@@ -211,7 +211,7 @@ class ref_calculate(Node):
         self.goal_pos.y = self.Point[min[0],1]
         self.goal_pos.theta = math.atan2(self.person[1], self.person[0])
         self.goal_pub.publish(self.goal_pos)
-        self.pub_oval(min[0], min[1])
+        # self.pub_oval(min[0], min[1])
     
     def pub_oval(self, min:int, min_ang:int):
         marker_array = MarkerArray()

@@ -1,7 +1,7 @@
 point_cal:
   ros__parameters:
     topic_object: 'HsinChiaChen'
-    radius: 2.0
+    radius: 1.0
     circle_num: 101
     laser_max_dis: 5.0
     coff_static_obstacle: 0.5
@@ -9,5 +9,5 @@ point_cal:
     coff_robot_ang: 1.0
     topic_person: 'person_array'
     base_link_frame: 'base_link'
-    camera_frame: 'camera_link'
+    camera_frame: 'zedx_base_link'
     base_scan_frame: 'base_scan'
