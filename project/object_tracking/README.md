@@ -22,6 +22,12 @@ If you want to try it out in the real world, make sure the program is enabled by
 ros2 launch run_sensor object_tracking_real.launch.py
 ros2 launch visual_control_v1 irobot_PID.launch.py
 ```
+- scout_base
+- zed_wrapper
+- velodyne
+- point_cal
+- object_detection
+- obstacle_detect
 
 ## 1. Sensor
 Make sure the required sensors are turned on.

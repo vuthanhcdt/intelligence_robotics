@@ -11,20 +11,20 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
-    # config_rviz2 = os.path.join(
-    #     get_package_share_directory('object_detection'),
-    #     'rviz2',
-    #     'object_detection_rviz2.rviz'
-    #     )
+    config_rviz2 = os.path.join(
+        get_package_share_directory('object_detection'),
+        'rviz2',
+        'object_detection_rviz2.rviz'
+        )
         
-    #  # Rviz2 node
-    # rviz2_node = Node(
-    #     package='rviz2',
-    #     executable='rviz2',
-    #     name='object_detection_rviz2',
-    #     output='screen',
-    #     arguments=[["-d"], [config_rviz2]],
-    # )
+     # Rviz2 node
+    rviz2_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='object_detection_rviz2',
+        output='screen',
+        arguments=[["-d"], [config_rviz2]],
+    )
 
     config = os.path.join(
         get_package_share_directory('object_detection'),
@@ -54,5 +54,5 @@ def generate_launch_description():
     
 
     return LaunchDescription([
-        node,real_node
+        node,real_node, rviz2_node
     ])

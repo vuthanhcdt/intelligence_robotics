@@ -17,6 +17,7 @@ def generate_launch_description():
         )
 
     node = launch_ros.actions.Node(
+        name = 'point_cal_simulation',
         package='point_cal',
         executable='point_cal.py',
         output='screen',

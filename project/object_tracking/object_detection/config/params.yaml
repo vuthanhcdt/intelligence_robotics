@@ -3,7 +3,7 @@ object_detection:
     topic_camera: '/zedx/left/rgb/image_rect_color'
     cam_name: 'camera'
     model_yolo: 'yolov8n.pt'
-    model_yolo_custom: 'AI_course_0517.pt'
+    model_yolo_custom: 'AI_detect_0520.pt'
     topic_object: 'object_detection'
 
 real_objection:

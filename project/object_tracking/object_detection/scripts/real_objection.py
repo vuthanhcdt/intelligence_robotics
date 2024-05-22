@@ -95,7 +95,7 @@ class RealObjectionNode(Node):
         return depths[Idx]
 
     def pixel_point(self, data, position):
-        print(position)
+        # print(position)
         list_real_position = []
         num_object = int(len(position) / 2)
         u = position[:num_object]
