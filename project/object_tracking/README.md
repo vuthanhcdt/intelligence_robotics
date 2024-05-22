@@ -1,7 +1,7 @@
 # Deep Learning for Object Detection and Object Following
 This package contains essential commands to understand the basic principles of applying deep learning to object detection and tracking using YOLOv8.
 
-![](media/PID.gif)
+![](media/PID.gif=1040x292)
 
 ## Simulation
 If you want to try in the simulator, make sure Gazebo is enabled by running the following command:

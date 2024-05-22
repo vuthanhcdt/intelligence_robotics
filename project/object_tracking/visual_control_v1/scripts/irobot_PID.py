@@ -69,7 +69,7 @@ class LocalPlanningNode(Node):
         w = kp * (theta_error) + ki * self.error_sum + kd * (theta_error - self.pre_error)
         self.pre_error = theta_error
         if self.error_sum > 50.0: self.error_sum = 0.0
-        
+
         return v, w
 
     def set_range(self):
@@ -124,7 +124,7 @@ class LocalPlanningNode(Node):
         self.pub_vel.publish(twist)
         self.distance_check = True
 
-        # self.get_goal = False
+        self.get_goal = False
 
 def start():
 
