@@ -20,7 +20,8 @@ def generate_launch_description():
     node = launch_ros.actions.Node(
         name='pid_control',
         package='pid_control',
-        executable='pid_control.py',
+        # executable='pid_control.py',
+        executable='pid_control_origin.py',
         output='screen',
         emulate_tty=True,
         parameters=[config]

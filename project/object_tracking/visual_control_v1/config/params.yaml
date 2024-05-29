@@ -12,7 +12,7 @@ pid_control:
 irobot_PID:
   ros__parameters:
     T: 5.0
-    samplingtime: 0.1
+    samplingtime: 0.05
     max_acc: 3.0
     max_ang_acc: 3.0
     lim_max_vel: 0.8

@@ -3,7 +3,7 @@ object_detection:
     topic_camera: '/zedx/left/rgb/image_rect_color'
     cam_name: 'camera'
     model_yolo: 'yolov8n.pt'
-    model_yolo_custom: 'AI_detect_0520.pt'
+    model_yolo_custom: 'Red_colab.pt'
     topic_object: 'object_detection'
 
 real_objection:
@@ -17,3 +17,12 @@ real_objection:
     permit_distance: 5.0
     limit_x: 260.0
     limit_y: 300.0
+
+##################### weight #####################
+# 0524_blue1
+# 0524_green1
+# 0524_red1
+# blue
+# red
+# AI_detect_0520
+# Red_colab

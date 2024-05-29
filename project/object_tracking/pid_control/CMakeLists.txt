@@ -45,6 +45,7 @@ ament_python_install_package(${PROJECT_NAME})
 # Install Python executables
 install(PROGRAMS
   scripts/pid_control.py
+  scripts/pid_control_origin.py
   launch/pid_control.launch.py
   DESTINATION lib/${PROJECT_NAME}
 )

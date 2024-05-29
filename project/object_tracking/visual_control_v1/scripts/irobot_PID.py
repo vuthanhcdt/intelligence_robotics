@@ -43,6 +43,7 @@ class LocalPlanningNode(Node):
         self.pre_error = 0.0
         self.pre_vel = [0.0, 0.0]
         self.count = 0
+        self.count_stop=0
 
         self.sub = self.create_subscription(Pose2D, "goal_point", self.listener_callback_goal, self.qos)
 
@@ -57,18 +58,16 @@ class LocalPlanningNode(Node):
         self.goal[1] = msg.y
         self.goal[2] = msg.theta
         self.get_goal = True
+        self.count_stop=0
         
-    def PID_Control(self, kp, ki, kd, kp2):
-        distance = math.hypot(self.goal[0], self.goal[1])
+    def PID_Control(self,distance,theta_error, kp, ki, kd, kp2):
+    
         v = kp2 * distance
-
         # theta_robot_goal = math.atan2(self.goal[1], self.goal[0])
-        theta_goal_person = self.goal[2]
-        theta_error = theta_goal_person
         self.error_sum = self.error_sum + theta_error
         w = kp * (theta_error) + ki * self.error_sum + kd * (theta_error - self.pre_error)
         self.pre_error = theta_error
-        if self.error_sum > 50.0: self.error_sum = 0.0
+        if self.error_sum > 1.0: self.error_sum = 0.0
 
         return v, w
 
@@ -91,6 +90,8 @@ class LocalPlanningNode(Node):
             return data
 
     def timer_callback(self):
+        self.count_stop=self.count_stop+1
+        print(self.count_stop)
         twist = Twist()
         self.current_useq = self.pre_vel
 
@@ -98,13 +99,22 @@ class LocalPlanningNode(Node):
             distance = math.hypot(self.goal[0], self.goal[1])
             if distance < self.goal_tolerate_dis:
                 self.distance_check = False
+
+            if self.count_stop>30:
+                v=0.0
+                w=0.0
+                self.distance_check=False
+                self.get_goal=False
+                print("stop")
             
             min_vel,  max_vel, min_ang_vel, max_ang_vel = self.set_range()
 
-            v, w = self.PID_Control(self.kp_ang, self.ki_ang, self.kd_ang, self.kp_dis)
+            v, w = self.PID_Control(distance,self.goal[2],self.kp_ang, self.ki_ang, self.kd_ang, self.kp_dis)
             
             v = self.clamp(v, min_vel, max_vel)
             w = self.clamp(w, min_ang_vel, max_ang_vel)
+
+
             
             if self.distance_check: twist.linear.x = float(v)
             twist.angular.z = float(w)
@@ -124,7 +134,7 @@ class LocalPlanningNode(Node):
         self.pub_vel.publish(twist)
         self.distance_check = True
 
-        self.get_goal = False
+        # self.get_goal = False
 
 def start():
 
