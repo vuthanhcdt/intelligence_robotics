@@ -36,7 +36,7 @@ if(ROS2_FOUND)
         #message("* ROS2 ${FOUND_ROS2_DISTRO} is officially supported by this package.")
         add_definitions(-DFOUND_HUMBLE)
     else()
-        message("*** WARNING *** ROS2 ${FOUND_ROS2_DISTRO} is not officially supported by this package. Correct working is not guarantee.")
+        message("*** WARNING *** ROS2 ${FOUND_ROS2_DISTRO} is not officially supported by the package '${PROJECT_NAME}'. Correct operation is not guaranteed.")
     endif()
 else()
     message("*** WARNING *** ROS2 distro is unknown. This package could not work correctly.")
@@ -86,7 +86,9 @@ set(MSG_FILES
     "msg/DepthInfoStamped.msg"
     "msg/PlaneStamped.msg"
     "msg/PosTrackStatus.msg"
+    "msg/GnssFusionStatus.msg"
     "msg/Heartbeat.msg"
+    "msg/MagHeadingStatus.msg"
 )
 
 set(SRV_FILES
