@@ -13,8 +13,8 @@ def generate_launch_description():
     use_sim_time_arg = DeclareLaunchArgument('use_sim_time', default_value='false',
                                              description='Use simulation clock if true')
 
-    port_name_arg = DeclareLaunchArgument('port_name', default_value='can2',
-                                         description='CAN bus name, e.g. can2')
+    port_name_arg = DeclareLaunchArgument('port_name', default_value='can0',
+                                         description='CAN bus name, e.g. can0')
     odom_frame_arg = DeclareLaunchArgument('odom_frame', default_value='odom',
                                            description='Odometry frame id')
     base_link_frame_arg = DeclareLaunchArgument('base_frame', default_value='base_link',
