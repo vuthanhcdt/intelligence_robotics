@@ -14,20 +14,20 @@ irobot/
 │   │   ├── scout_base               // Base for Irobot
 │   │   ├── scout_msgs               // Messages for Irobot
 │   │   ├── scout_simulation         // Simulation for Irobot
-│   │   ├── velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
-│   │   └── zed-ros2-wrapper         // Communication with ZED X
+│   │   └── velodyne_gazebo_plugins  // Gazebo plugins for Velodyne
+│   ├── zed-ros2-wrapper             // Communication with ZED X
 │   ├── ugv_sdk                      // Protocol to transmit data with Irobot 
 │   └── velodyne                     // point cloud for Velodyne
-├── obstacle_detect                  // Package for building costmap
 ├── pointcloud_to_laserscan          // Convert poincloud to laserscan
 ├── project                          // Project packages for Irobot
 │   ├── autonoumous_navigation       // Package for autonomous navigation
 │   ├── object_tracking              // Package for object tracking
 │   │   ├── object_detection         // Package for object detection
+│   │   ├── obstacle_detect          // Package for building costmap
 │   │   └── point_cal                // Package for calculating target points
 │   └── train_model_yolov8           // Package for training YOLOv8 model
-├── run_sensor
-├── student_pks                      // PStudent packages - Place your packages here with your name to test your programs.
+├── run_sensor                       // Run all sensors
+├── student_pks                      // Student packages - Place your packages here with your name to test your programs.
 └── README.md
 ```
 Please ensure that your packages are named in lowercase and do not contain any special characters. Place them in the ``student_pkgs`` directory.
