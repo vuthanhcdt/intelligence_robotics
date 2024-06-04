@@ -18,7 +18,7 @@ from std_msgs.msg import Int64, Float64
 
 class LocalPlanningNode(Node):
     def __init__(self):
-        super().__init__('PID_planner')
+        super().__init__('irobot_PID')
         self.qos = QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT,depth=1)
 
         self.T = self.declare_parameter('T',5.0).get_parameter_value().double_value
@@ -103,6 +103,7 @@ class LocalPlanningNode(Node):
             if self.count_stop>30:
                 v=0.0
                 w=0.0
+                self.error_sum=0.0
                 self.distance_check=False
                 self.get_goal=False
                 print("stop")
@@ -125,7 +126,7 @@ class LocalPlanningNode(Node):
             twist.linear.x = float(0.0)
             if self.pre_vel[1] > 0.0: twist.angular.z = float(0.2)
             else:  twist.angular.z = float(-0.2)
-
+        print("anlge:",self.goal[2])
         print("get_goal = ", self.get_goal)
         print("distance_check = ", self.distance_check)
         print(f'v = {twist.linear.x}, w = {twist.angular.z}')

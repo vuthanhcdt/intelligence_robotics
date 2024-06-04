@@ -36,8 +36,13 @@ def generate_launch_description():
             executable="static_transform_publisher",
             output="screen" ,
             arguments=["0.175", "0.0", "0.0", "0.0", "0.0", "0", "base_link", "base_scan"]
-        )
-    
+        ) 
+    static_tf2_base_camera= Node(package="tf2_ros",
+            executable="static_transform_publisher",
+            output="screen" ,
+            arguments=["0.265", "0.0", "0.6", "0.0", "0.0", "0", "base_link","zedx_camera_link"]
+        ) 
+        
     scout_base_node = launch_ros.actions.Node(
         package='scout_base',
         executable='scout_base_node',
@@ -67,5 +72,6 @@ def generate_launch_description():
         simulated_robot_arg,
         sim_control_rate_arg,
         scout_base_node,
-        static_tf2_base_scan
+        static_tf2_base_scan,
+        static_tf2_base_camera
     ])

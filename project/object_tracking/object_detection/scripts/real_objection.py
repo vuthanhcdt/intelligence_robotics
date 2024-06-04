@@ -86,7 +86,7 @@ class RealObjectionNode(Node):
         self.pub_object = self.create_publisher(Float32MultiArray, self.topic_person_array, 2)
 
         # Timer callback for processing data
-        timer_period = 0.01  # seconds
+        timer_period = 0.001  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
     def get_distance(self, data, u, v):
@@ -175,7 +175,6 @@ class RealObjectionNode(Node):
             # print(merged_list)
             self.publish_maker(position)
             self.publish_object(merged_list)
-            self.need_info = True 
             self.read_depth = False
             self.read_object = False
 

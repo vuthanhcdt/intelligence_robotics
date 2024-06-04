@@ -3,7 +3,7 @@ object_detection:
     topic_camera: '/zedx/left/rgb/image_rect_color'
     cam_name: 'camera'
     model_yolo: 'yolov8n.pt'
-    model_yolo_custom: 'Red_colab.pt'
+    model_yolo_custom: '0524_red1.pt'
     topic_object: 'object_detection'
 
 real_objection:
@@ -12,7 +12,7 @@ real_objection:
     topic_object: 'object_detection'
     topic_camera_depth: '/zedx/left/depth/depth_registered'
     topic_camera_info: '/zedx/left/depth/camera_info'
-    base_frame: 'zedx_base_link'
+    base_frame: 'zedx_camera_link'
     topic_person: 'person'
     permit_distance: 5.0
     limit_x: 260.0

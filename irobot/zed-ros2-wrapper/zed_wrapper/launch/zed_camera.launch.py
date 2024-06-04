@@ -98,7 +98,7 @@ def launch_setup(context, *args, **kwargs):
     custom_baseline_val = custom_baseline.perform(context)
 
     if (camera_name_val == ''):
-        camera_name_val = 'zed'
+        camera_name_val = 'zedx'
 
     if (camera_model_val == 'virtual' and float(custom_baseline_val) <= 0):
         return [
