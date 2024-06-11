@@ -5,6 +5,7 @@ object_detection:
     model_yolo: 'yolov8n.pt'
     model_yolo_custom: 'gazebo_person.pt'  # gazebo_detect_170124  yolov8n gazebo_person
     topic_object: 'object_detection'
+    my_cls: 0
 
 real_objection:
   ros__parameters:

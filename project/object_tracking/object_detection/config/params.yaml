@@ -5,7 +5,8 @@ object_detection:
     model_yolo: 'yolov8n.pt'
     model_yolo_custom: '0524_red1.pt'
     topic_object: 'object_detection'
-
+    my_cls: 0
+    
 real_objection:
   ros__parameters:
     cam_name: 'camera'

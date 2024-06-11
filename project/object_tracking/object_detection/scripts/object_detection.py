@@ -13,7 +13,7 @@ from threading import Lock, Thread
 from time import sleep
 from std_msgs.msg import Int16MultiArray
 torch.cuda.set_device(0) # Set to your desired GPU number
-class object_detection(rclpy.node.Node):
+class object_detection(Node):
 
     def __init__(self) :
         """
@@ -36,6 +36,8 @@ class object_detection(rclpy.node.Node):
 
         self.declare_parameter('topic_object','topic_object')
         self.topic_object = self.get_parameter('topic_object').get_parameter_value().string_value
+
+        self.my_cls = self.declare_parameter('my_cls',0).get_parameter_value().integer_value
 
         self.data_object=Int16MultiArray()
 
@@ -70,8 +72,9 @@ class object_detection(rclpy.node.Node):
                     detection_count = self.results[0].boxes.shape[0]
                     for i in range(detection_count):
                         cls = int(self.results[0].boxes.cls[i].item())
-                        # print(cls)
+                        print(cls)
                         if cls == 0 or cls == 1 or cls == 2:
+                        # if cls == self.my_cls:
                             list_object = self.results[0].boxes.xyxy[i].cpu().numpy()
                             self.x_center = int((list_object[0]+list_object[2])/2)
                             self.y_center = int((list_object[1]+list_object[3])/2)
