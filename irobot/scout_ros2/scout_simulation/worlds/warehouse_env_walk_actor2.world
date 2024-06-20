@@ -1,4 +1,5 @@
-<sdf version='1.7'>
+<?xml version="1.0" ?>
+<sdf version="1.6">
   <world name='world'>
     <gravity>0 0 -9.8</gravity>
     <physics name='default_physics' default='0' type='ode'>

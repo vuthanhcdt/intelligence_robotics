@@ -41,7 +41,7 @@ The robot uses the YOLOv8 model for object recognition. If you wish to change th
 
 ```
 ros2 launch object_detection object_detection.launch.py #for real robot
-ros2 launch object_detection object_detection_gazebo.launch.launch.py #for gazebo
+ros2 launch object_detection object_detection_gazebo.launch.py #for gazebo
 ```
 
 ## 3. Goal Calculation

@@ -1,5 +1,5 @@
-# tree > 2024-01-22 4:50pm
-https://universe.roboflow.com/cheng-kung-uni/tree-rrzll
+# ai 2 > 2024-06-10 6-13pm
+https://universe.roboflow.com/nrsl/ai-2
 
 Provided by a Roboflow user
 License: CC BY 4.0

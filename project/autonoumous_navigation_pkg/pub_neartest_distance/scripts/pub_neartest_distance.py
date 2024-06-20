@@ -7,7 +7,6 @@ from sensor_msgs.msg import LaserScan
 from tf2_geometry_msgs import PoseStamped
 from geometry_msgs.msg import PoseStamped, Point, Pose2D
 
-
 class ref_calculate(Node):
 
     def __init__(self) :

@@ -6,7 +6,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     scout_dir = get_package_share_directory('scout_simulation')
-    scout_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(scout_dir + '/launch/simulation.launch.py'))
+    scout_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(scout_dir + '/launch/object_tracking.launch.py'))
 
     object_dir = get_package_share_directory('object_detection')
     object_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(object_dir + '/launch/object_detection_gazebo.launch.py'))
